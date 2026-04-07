@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Universal Industrial Care | Occupational Healthcare Services</title>
+  <meta name="description" content="Universal Industrial Care provides comprehensive occupational healthcare services, physical examinations, drug screening, and disability management in City of Industry, CA.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --navy: #0B1D3A;
+      --navy-light: #132D54;
+      --teal: #1A6B5A;
+      --teal-light: #238C75;
+      --teal-pale: #E8F5F1;
+      --gold: #C4943A;
+      --gold-light: #E8BD6E;
+      --cream: #FAF8F5;
+      --white: #FFFFFF;
+      --gray-50: #F7F7F8;
+      --gray-100: #EDEDEF;
+      --gray-200: #D4D4D8;
+      --gray-400: #9B9BA5;
+      --gray-600: #5A5A68;
+      --gray-800: #2D2D35;
+      --font-display: 'DM Serif Display', Georgia, serif;
+      --font-body: 'Outfit', system-ui, sans-serif;
+      --shadow-sm: 0 1px 3px rgba(11,29,58,0.06);
+      --shadow-md: 0 4px 16px rgba(11,29,58,0.08);
+      --shadow-lg: 0 12px 40px rgba(11,29,58,0.12);
+      --shadow-xl: 0 24px 60px rgba(11,29,58,0.16);
+    }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--gray-800);
+      background: var(--cream);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ── NAVIGATION ── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(11,29,58,0.06);
+      transition: box-shadow 0.3s ease;
+    }
+    .nav.scrolled { box-shadow: var(--shadow-md); }
+    .nav-inner {
+      max-width: 1240px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem; height: 76px;
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: 0.75rem;
+      text-decoration: none; color: var(--navy);
+    }
+    .nav-logo {
+      width: 42px; height: 42px;
+      background: var(--teal);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-family: var(--font-display); font-size: 1.1rem;
+      position: relative; overflow: hidden;
+    }
+    .nav-logo::after {
+      content: '';
+      position: absolute; top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.1) 50%, transparent 60%);
+    }
+    .nav-brand-text {
+      font-family: var(--font-display); font-size: 1.15rem;
+      letter-spacing: -0.01em;
+    }
+    .nav-brand-text span { color: var(--teal); }
+    .nav-links { display: flex; gap: 0.25rem; align-items: center; }
+    .nav-links a {
+      text-decoration: none; color: var(--gray-600);
+      font-size: 0.9rem; font-weight: 500;
+      padding: 0.5rem 1rem; border-radius: 8px;
+      transition: all 0.2s ease;
+    }
+    .nav-links a:hover { color: var(--navy); background: var(--gray-50); }
+    .nav-cta {
+      background: var(--teal) !important; color: white !important;
+      padding: 0.55rem 1.25rem !important; font-weight: 600 !important;
+    }
+    .nav-cta:hover { background: var(--teal-light) !important; }
+
+    .nav-mobile-toggle {
+      display: none; background: none; border: none; cursor: pointer;
+      width: 40px; height: 40px; position: relative;
+    }
+    .nav-mobile-toggle span {
+      display: block; width: 22px; height: 2px;
+      background: var(--navy); position: absolute; left: 9px;
+      transition: all 0.3s ease;
+    }
+    .nav-mobile-toggle span:nth-child(1) { top: 13px; }
+    .nav-mobile-toggle span:nth-child(2) { top: 19px; }
+    .nav-mobile-toggle span:nth-child(3) { top: 25px; }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 10rem 2rem 6rem;
+      position: relative;
+      background: linear-gradient(165deg, var(--navy) 0%, #0F2847 55%, var(--teal) 100%);
+      overflow: hidden; min-height: 92vh;
+      display: flex; align-items: center;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 800px 600px at 20% 50%, rgba(26,107,90,0.25), transparent),
+        radial-gradient(ellipse 600px 400px at 80% 30%, rgba(196,148,58,0.12), transparent);
+    }
+    .hero-grid-pattern {
+      position: absolute; inset: 0; opacity: 0.04;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-inner {
+      max-width: 1240px; margin: 0 auto; width: 100%;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+      align-items: center; position: relative; z-index: 2;
+    }
+    .hero-content { color: white; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 0.4rem 1rem; border-radius: 100px;
+      font-size: 0.8rem; font-weight: 500;
+      color: var(--gold-light); margin-bottom: 1.75rem;
+      backdrop-filter: blur(10px);
+    }
+    .hero-badge::before {
+      content: ''; width: 7px; height: 7px;
+      background: var(--gold-light); border-radius: 50%;
+      animation: pulse-dot 2s ease infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.4); }
+    }
+    .hero h1 {
+      font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 3.8rem);
+      line-height: 1.1; margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+    .hero h1 em {
+      font-style: italic; color: var(--gold-light);
+    }
+    .hero-desc {
+      font-size: 1.1rem; line-height: 1.7;
+      color: rgba(255,255,255,0.72); max-width: 520px;
+      margin-bottom: 2.5rem;
+    }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.85rem 1.75rem; border-radius: 10px;
+      font-family: var(--font-body); font-size: 0.95rem;
+      font-weight: 600; text-decoration: none;
+      transition: all 0.25s ease; cursor: pointer; border: none;
+    }
+    .btn-primary {
+      background: var(--gold); color: var(--navy);
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(196,148,58,0.3); }
+    .btn-outline {
+      background: transparent; color: white;
+      border: 1.5px solid rgba(255,255,255,0.25);
+    }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.05); }
+
+    .hero-visual {
+      position: relative;
+    }
+    .hero-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px; padding: 2.5rem;
+      backdrop-filter: blur(20px);
+    }
+    .hero-stats {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+    }
+    .hero-stat {
+      text-align: center; padding: 1.25rem;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .hero-stat-number {
+      font-family: var(--font-display); font-size: 2.2rem;
+      color: var(--gold-light); display: block; margin-bottom: 0.25rem;
+    }
+    .hero-stat-label {
+      font-size: 0.8rem; color: rgba(255,255,255,0.55);
+      font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em;
+    }
+    .hero-card-footer {
+      margin-top: 1.5rem; padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .hero-card-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: rgba(26,107,90,0.3);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-card-footer-text {
+      font-size: 0.85rem; color: rgba(255,255,255,0.6);
+    }
+    .hero-card-footer-text strong {
+      display: block; color: white; font-weight: 600;
+    }
+
+    /* ── TRUST BAR ── */
+    .trust-bar {
+      background: white;
+      border-bottom: 1px solid var(--gray-100);
+      padding: 2rem;
+    }
+    .trust-bar-inner {
+      max-width: 1240px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: center;
+      gap: 3rem; flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex; align-items: center; gap: 0.75rem;
+      color: var(--gray-600); font-size: 0.88rem; font-weight: 500;
+    }
+    .trust-icon {
+      width: 38px; height: 38px; border-radius: 10px;
+      background: var(--teal-pale); color: var(--teal);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* ── SECTIONS ── */
+    .section {
+      padding: 6rem 2rem;
+    }
+    .section-inner {
+      max-width: 1240px; margin: 0 auto;
+    }
+    .section-header {
+      text-align: center; margin-bottom: 4rem;
+    }
+    .section-label {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.78rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--teal); margin-bottom: 1rem;
+    }
+    .section-label::before, .section-label::after {
+      content: ''; width: 20px; height: 1.5px;
+      background: var(--teal); opacity: 0.4;
+    }
+    .section-title {
+      font-family: var(--font-display); font-size: clamp(2rem, 3.5vw, 2.8rem);
+      color: var(--navy); line-height: 1.15; margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+    .section-subtitle {
+      font-size: 1.05rem; color: var(--gray-600);
+      max-width: 600px; margin: 0 auto; line-height: 1.7;
+    }
+
+    /* ── ABOUT ── */
+    .about { background: white; }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+      align-items: center;
+    }
+    .about-image-area { position: relative; }
+    .about-image-main {
+      width: 100%; border-radius: 20px;
+      background: linear-gradient(135deg, var(--teal-pale), #D5EBE5);
+      aspect-ratio: 4/3; display: flex; align-items: center;
+      justify-content: center; position: relative; overflow: hidden;
+    }
+    .about-image-main svg { width: 50%; opacity: 0.2; }
+    .about-image-accent {
+      position: absolute; bottom: -1.5rem; right: -1.5rem;
+      width: 140px; height: 140px; border-radius: 16px;
+      background: var(--gold); display: flex; align-items: center;
+      justify-content: center; flex-direction: column;
+      color: var(--navy); box-shadow: var(--shadow-lg);
+    }
+    .about-image-accent strong {
+      font-family: var(--font-display); font-size: 2.5rem; line-height: 1;
+    }
+    .about-image-accent span {
+      font-size: 0.75rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.05em;
+      margin-top: 0.25rem;
+    }
+    .about-text .section-label { justify-content: flex-start; }
+    .about-text .section-title { text-align: left; }
+    .about-text p {
+      color: var(--gray-600); margin-bottom: 1.25rem;
+      font-size: 1.02rem; line-height: 1.75;
+    }
+    .about-features {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1rem; margin-top: 2rem;
+    }
+    .about-feature {
+      display: flex; align-items: flex-start; gap: 0.75rem;
+      padding: 1rem; border-radius: 12px;
+      background: var(--gray-50);
+    }
+    .about-feature-icon {
+      width: 32px; height: 32px; border-radius: 8px;
+      background: var(--teal-pale); color: var(--teal);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-size: 0.9rem;
+    }
+    .about-feature span {
+      font-size: 0.88rem; font-weight: 500;
+      color: var(--navy); line-height: 1.4;
+    }
+
+    /* ── SERVICES ── */
+    .services { background: var(--cream); }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .service-card {
+      background: white; border-radius: 16px;
+      padding: 2rem; border: 1px solid var(--gray-100);
+      transition: all 0.3s ease; position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 3px; background: var(--teal);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    .service-card:hover {
+      box-shadow: var(--shadow-lg); transform: translateY(-4px);
+      border-color: transparent;
+    }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-icon {
+      width: 52px; height: 52px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.25rem; font-size: 1.4rem;
+    }
+    .service-icon.teal { background: var(--teal-pale); color: var(--teal); }
+    .service-icon.navy { background: #E8EDF5; color: var(--navy); }
+    .service-icon.gold { background: #FDF3E1; color: var(--gold); }
+    .service-card h3 {
+      font-family: var(--font-display); font-size: 1.2rem;
+      color: var(--navy); margin-bottom: 0.75rem;
+    }
+    .service-card p {
+      font-size: 0.9rem; color: var(--gray-600); line-height: 1.65;
+    }
+    .service-card ul {
+      list-style: none; margin-top: 0.75rem;
+    }
+    .service-card li {
+      font-size: 0.85rem; color: var(--gray-600);
+      padding: 0.25rem 0; padding-left: 1.25rem;
+      position: relative;
+    }
+    .service-card li::before {
+      content: '';
+      position: absolute; left: 0; top: 0.6rem;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--teal); opacity: 0.5;
+    }
+
+    /* ── WORK TRANSITION (FEATURED) ── */
+    .featured {
+      background: var(--navy); color: white;
+      position: relative; overflow: hidden;
+    }
+    .featured::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 600px 400px at 90% 50%, rgba(26,107,90,0.2), transparent),
+        radial-gradient(ellipse 400px 300px at 10% 80%, rgba(196,148,58,0.1), transparent);
+    }
+    .featured-inner {
+      max-width: 1240px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: center;
+      position: relative; z-index: 2;
+    }
+    .featured .section-label { color: var(--gold-light); }
+    .featured .section-label::before, .featured .section-label::after { background: var(--gold-light); }
+    .featured .section-title { color: white; text-align: left; }
+    .featured-desc {
+      font-size: 1.05rem; color: rgba(255,255,255,0.65);
+      line-height: 1.75; margin-bottom: 2rem;
+    }
+    .featured-stat-row {
+      display: flex; gap: 2rem; margin-bottom: 2rem;
+    }
+    .featured-stat-item {
+      display: flex; flex-direction: column;
+    }
+    .featured-stat-val {
+      font-family: var(--font-display); font-size: 2.5rem;
+      color: var(--gold-light);
+    }
+    .featured-stat-desc {
+      font-size: 0.82rem; color: rgba(255,255,255,0.5);
+      text-transform: uppercase; letter-spacing: 0.06em; font-weight: 500;
+    }
+    .featured-benefits {
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+    .featured-benefit {
+      display: flex; align-items: flex-start; gap: 1rem;
+      padding: 1.25rem 1.5rem; border-radius: 14px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: all 0.25s ease;
+    }
+    .featured-benefit:hover {
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(255,255,255,0.12);
+    }
+    .featured-benefit-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: rgba(26,107,90,0.25);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; color: var(--teal-light);
+    }
+    .featured-benefit h4 {
+      font-size: 0.95rem; font-weight: 600; margin-bottom: 0.25rem;
+    }
+    .featured-benefit p {
+      font-size: 0.85rem; color: rgba(255,255,255,0.5); line-height: 1.5;
+    }
+
+    /* ── STAFF ── */
+    .staff { background: white; }
+    .staff-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .staff-card {
+      text-align: center; padding: 2.5rem 2rem;
+      border-radius: 16px; border: 1px solid var(--gray-100);
+      transition: all 0.3s ease;
+    }
+    .staff-card:hover {
+      box-shadow: var(--shadow-lg); transform: translateY(-3px);
+      border-color: transparent;
+    }
+    .staff-avatar {
+      width: 100px; height: 100px; border-radius: 50%;
+      margin: 0 auto 1.25rem;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-size: 1.8rem;
+      color: white; position: relative;
+    }
+    .staff-avatar.teal { background: linear-gradient(135deg, var(--teal), var(--teal-light)); }
+    .staff-avatar.navy { background: linear-gradient(135deg, var(--navy), var(--navy-light)); }
+    .staff-avatar.gold { background: linear-gradient(135deg, var(--gold), var(--gold-light)); }
+    .staff-avatar::after {
+      content: '';
+      position: absolute; inset: -3px; border-radius: 50%;
+      border: 2px solid var(--gray-100);
+    }
+    .staff-card h3 {
+      font-family: var(--font-display); font-size: 1.2rem;
+      color: var(--navy); margin-bottom: 0.25rem;
+    }
+    .staff-card .staff-title {
+      font-size: 0.82rem; color: var(--teal);
+      font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.06em; margin-bottom: 1rem;
+    }
+    .staff-card p {
+      font-size: 0.9rem; color: var(--gray-600); line-height: 1.65;
+    }
+    .staff-credentials {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      justify-content: center; margin-top: 1rem;
+    }
+    .staff-credential {
+      font-size: 0.75rem; padding: 0.3rem 0.75rem;
+      border-radius: 100px; background: var(--gray-50);
+      color: var(--gray-600); font-weight: 500;
+    }
+
+    /* ── TRANSPORT ── */
+    .transport { background: var(--teal-pale); }
+    .transport-inner {
+      max-width: 1240px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1.2fr;
+      gap: 4rem; align-items: center;
+    }
+    .transport .section-title { text-align: left; }
+    .transport-desc {
+      font-size: 1.02rem; color: var(--gray-600); line-height: 1.75;
+      margin-bottom: 2rem;
+    }
+    .transport-cities {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+    }
+    .transport-city {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.45rem 0.9rem; border-radius: 8px;
+      background: white; color: var(--navy);
+      font-size: 0.85rem; font-weight: 500;
+      border: 1px solid rgba(26,107,90,0.12);
+      transition: all 0.2s ease;
+    }
+    .transport-city:hover {
+      background: var(--teal); color: white;
+      border-color: var(--teal);
+    }
+    .transport-city svg { width: 14px; height: 14px; opacity: 0.5; }
+
+    /* ── CONTACT ── */
+    .contact { background: white; }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    .contact-card {
+      padding: 2.5rem; border-radius: 16px;
+      border: 1px solid var(--gray-100);
+    }
+    .contact-card.primary {
+      background: var(--navy); color: white;
+      border: none; position: relative; overflow: hidden;
+    }
+    .contact-card.primary::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 400px 300px at 80% 20%, rgba(26,107,90,0.25), transparent);
+    }
+    .contact-card.primary > * { position: relative; z-index: 2; }
+    .contact-card h3 {
+      font-family: var(--font-display); font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .contact-card.primary h3 { color: white; }
+    .contact-card:not(.primary) h3 { color: var(--navy); }
+    .contact-item {
+      display: flex; align-items: flex-start; gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .contact-item:last-child { margin-bottom: 0; }
+    .contact-item-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-card.primary .contact-item-icon {
+      background: rgba(255,255,255,0.08);
+      color: var(--gold-light);
+    }
+    .contact-card:not(.primary) .contact-item-icon {
+      background: var(--teal-pale); color: var(--teal);
+    }
+    .contact-item-label {
+      font-size: 0.78rem; text-transform: uppercase;
+      letter-spacing: 0.08em; font-weight: 600;
+      margin-bottom: 0.15rem;
+    }
+    .contact-card.primary .contact-item-label { color: rgba(255,255,255,0.45); }
+    .contact-card:not(.primary) .contact-item-label { color: var(--gray-400); }
+    .contact-item-value {
+      font-size: 1.05rem; font-weight: 500;
+    }
+    .contact-card.primary .contact-item-value { color: white; }
+    .contact-card:not(.primary) .contact-item-value { color: var(--navy); }
+    .contact-item-value a {
+      color: inherit; text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      transition: border-color 0.2s;
+    }
+    .contact-item-value a:hover { border-color: rgba(255,255,255,0.5); }
+    .contact-card:not(.primary) .contact-item-value a {
+      border-bottom-color: var(--gray-200);
+    }
+    .contact-card:not(.primary) .contact-item-value a:hover {
+      border-bottom-color: var(--teal);
+    }
+    .contact-person {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 1rem; border-radius: 12px;
+      background: var(--gray-50); margin-bottom: 0.75rem;
+      transition: background 0.2s;
+    }
+    .contact-person:last-child { margin-bottom: 0; }
+    .contact-person:hover { background: var(--gray-100); }
+    .contact-person-avatar {
+      width: 36px; height: 36px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; font-weight: 700; color: white;
+    }
+    .contact-person-name {
+      font-size: 0.9rem; font-weight: 600; color: var(--navy);
+    }
+    .contact-person-role {
+      font-size: 0.78rem; color: var(--gray-400);
+    }
+    .contact-person-email {
+      margin-left: auto; font-size: 0.82rem;
+      color: var(--teal); text-decoration: none;
+      font-weight: 500;
+    }
+    .contact-person-email:hover { text-decoration: underline; }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: var(--navy); color: white;
+      padding: 4rem 2rem 2rem; position: relative;
+      overflow: hidden;
+    }
+    .footer::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--teal), var(--gold), transparent);
+    }
+    .footer-inner {
+      max-width: 1240px; margin: 0 auto;
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 3rem; margin-bottom: 3rem;
+    }
+    .footer-brand p {
+      color: rgba(255,255,255,0.45); font-size: 0.9rem;
+      line-height: 1.65; margin-top: 1rem;
+    }
+    .footer-col h4 {
+      font-size: 0.78rem; text-transform: uppercase;
+      letter-spacing: 0.1em; font-weight: 600;
+      color: rgba(255,255,255,0.4); margin-bottom: 1.25rem;
+    }
+    .footer-col a {
+      display: block; color: rgba(255,255,255,0.65);
+      text-decoration: none; font-size: 0.9rem;
+      padding: 0.3rem 0; transition: color 0.2s;
+    }
+    .footer-col a:hover { color: white; }
+    .footer-bottom {
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 0.82rem; color: rgba(255,255,255,0.3);
+    }
+
+    /* ── SCROLL ANIMATIONS ── */
+    .reveal {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .hero { min-height: auto; padding: 9rem 2rem 5rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .about-image-area { order: -1; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .featured-inner { grid-template-columns: 1fr; }
+      .staff-grid { grid-template-columns: repeat(2, 1fr); }
+      .transport-inner { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-mobile-toggle { display: block; }
+      .nav-links.open {
+        display: flex; flex-direction: column;
+        position: absolute; top: 76px; left: 0; right: 0;
+        background: white; padding: 1rem;
+        border-bottom: 1px solid var(--gray-100);
+        box-shadow: var(--shadow-md);
+      }
+      .hero { padding: 8rem 1.5rem 4rem; }
+      .hero h1 { font-size: 2.2rem; }
+      .section { padding: 4rem 1.5rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .staff-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .featured-stat-row { flex-direction: column; gap: 1rem; }
+      .about-features { grid-template-columns: 1fr; }
+      .trust-bar-inner { gap: 1.5rem; }
+      .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-brand">
+        <div class="nav-logo">
+          <svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="nav-brand-text"><span>Universal</span> Industrial Care</div>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#program">Programs</a>
+        <a href="#staff">Our Team</a>
+        <a href="#contact" class="nav-cta">Contact Us</a>
+      </div>
+      <button class="nav-mobile-toggle" id="mobileToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-grid-pattern"></div>
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge">Occupational Healthcare Leader</div>
+        <h1>Expert Occupational Health &amp; <em>Industrial Care</em></h1>
+        <p class="hero-desc">A leader in providing comprehensive occupational healthcare services for cost- and quality-conscious employers in the greater Los Angeles and San Gabriel Valley region.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">
+            <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            (626) 336-6652
+          </a>
+          <a href="#services" class="btn btn-outline">
+            Explore Services
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card">
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <span class="hero-stat-number">25+</span>
+              <span class="hero-stat-label">Years of Service</span>
+            </div>
+            <div class="hero-stat">
+              <span class="hero-stat-number">85%</span>
+              <span class="hero-stat-label">Return-to-Work Rate</span>
+            </div>
+            <div class="hero-stat">
+              <span class="hero-stat-number">9</span>
+              <span class="hero-stat-label">Medical Specialties</span>
+            </div>
+            <div class="hero-stat">
+              <span class="hero-stat-number">15+</span>
+              <span class="hero-stat-label">Cities Served</span>
+            </div>
+          </div>
+          <div class="hero-card-footer">
+            <div class="hero-card-icon">
+              <svg width="20" height="20" fill="none" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" color="rgba(255,255,255,0.6)"/></svg>
+            </div>
+            <div class="hero-card-footer-text">
+              <strong>State-of-the-Art Facility</strong>
+              City of Industry, California
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="trust-bar-inner">
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 4L12 14.01l-3-3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        Board-Certified Physicians
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        DOT-Compliant Screenings
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        Multilingual Staff
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        Free Patient Transportation
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="section about" id="about">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div class="about-image-area reveal">
+          <div class="about-image-main">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z" stroke="currentColor" stroke-width="1"/><path d="M12 18v-6M9 15h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div class="about-image-accent">
+            <strong>1999</strong>
+            <span>Established</span>
+          </div>
+        </div>
+        <div class="about-text">
+          <div class="section-label">About Our Practice</div>
+          <h2 class="section-title reveal">Dedicated to Superior Occupational Healthcare</h2>
+          <p class="reveal reveal-delay-1">Universal Industrial Care is a leader in providing occupational healthcare services for cost- and quality-conscious employers in our geographic region. We offer physical and drug screening services as well as comprehensive medical treatment and innovative disability management programs for injured workers.</p>
+          <p class="reveal reveal-delay-2">Our guiding principle is delivering superb medical care while keeping an open line of communication with each of our employer clients. We are committed to keeping employers promptly and fully informed of the medical status of each injured employee.</p>
+          <p class="reveal reveal-delay-3">Our state-of-the-art facility, opened in August 1999, features five examination rooms, a trauma room, a full x-ray department, and separate drug screening areas &mdash; all designed to provide efficient, high-quality care.</p>
+          <div class="about-features reveal reveal-delay-4">
+            <div class="about-feature">
+              <div class="about-feature-icon">
+                <svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M22 4L12 14.01l-3-3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </div>
+              <span>Five Examination Rooms</span>
+            </div>
+            <div class="about-feature">
+              <div class="about-feature-icon">
+                <svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M22 4L12 14.01l-3-3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </div>
+              <span>Dedicated Trauma Room</span>
+            </div>
+            <div class="about-feature">
+              <div class="about-feature-icon">
+                <svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M22 4L12 14.01l-3-3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </div>
+              <span>Full X-Ray Department</span>
+            </div>
+            <div class="about-feature">
+              <div class="about-feature-icon">
+                <svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M22 4L12 14.01l-3-3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </div>
+              <span>Drug Screening Areas</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section services" id="services">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-label">Our Services</div>
+        <h2 class="section-title reveal">Comprehensive Occupational Health Solutions</h2>
+        <p class="section-subtitle reveal reveal-delay-1">From pre-employment screenings to full rehabilitation programs, we provide the complete spectrum of occupational healthcare services.</p>
+      </div>
+      <div class="services-grid">
+
+        <div class="service-card reveal reveal-delay-1">
+          <div class="service-icon teal">
+            <svg width="26" height="26" fill="none" viewBox="0 0 24 24"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><rect x="8" y="2" width="8" height="4" rx="1" stroke="currentColor" stroke-width="2"/><path d="M12 11v6M9 14h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Physical Examinations</h3>
+          <p>Comprehensive examination services tailored for workplace requirements and regulatory compliance.</p>
+          <ul>
+            <li>Pre-employment physicals</li>
+            <li>DOT examinations</li>
+            <li>Annual &amp; return-to-work physicals</li>
+            <li>Vision &amp; audiometric testing</li>
+            <li>Spirometry &amp; EKG</li>
+            <li>Respiratory fit exams</li>
+          </ul>
+        </div>
+
+        <div class="service-card reveal reveal-delay-2">
+          <div class="service-icon navy">
+            <svg width="26" height="26" fill="none" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Drug &amp; Alcohol Testing</h3>
+          <p>Certified Medical Review Office performing compliant screenings with proper chain-of-custody procedures.</p>
+          <ul>
+            <li>NIDA &amp; non-NIDA drug screens</li>
+            <li>DOT-compliant breath alcohol testing</li>
+            <li>Chain-of-custody protocols</li>
+            <li>Intoximeters-certified equipment</li>
+          </ul>
+        </div>
+
+        <div class="service-card reveal reveal-delay-3">
+          <div class="service-icon gold">
+            <svg width="26" height="26" fill="none" viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Specialist Referrals</h3>
+          <p>On-site access to a comprehensive network of board-certified medical specialists.</p>
+          <ul>
+            <li>General &amp; orthopedic surgery</li>
+            <li>Internal medicine &amp; neurology</li>
+            <li>Physical rehabilitation</li>
+            <li>Ophthalmology &amp; podiatry</li>
+            <li>Reconstructive surgery</li>
+          </ul>
+        </div>
+
+        <div class="service-card reveal reveal-delay-1">
+          <div class="service-icon navy">
+            <svg width="26" height="26" fill="none" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Physical Therapy</h3>
+          <p>Full-service physical therapy facility available on-site, designed to accelerate recovery and restore function for injured workers.</p>
+        </div>
+
+        <div class="service-card reveal reveal-delay-2">
+          <div class="service-icon teal">
+            <svg width="26" height="26" fill="none" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Asbestos &amp; Carpal Tunnel</h3>
+          <p>Specialized diagnostic evaluations including asbestos-exposure x-rays and carpal tunnel assessments for workplace injury claims.</p>
+        </div>
+
+        <div class="service-card reveal reveal-delay-3">
+          <div class="service-icon gold">
+            <svg width="26" height="26" fill="none" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Disability Management</h3>
+          <p>Innovative disability management programs designed to minimize lost work time and control costs while ensuring optimal employee recovery.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK TRANSITION PROGRAM -->
+  <section class="section featured" id="program">
+    <div class="featured-inner">
+      <div>
+        <div class="section-label">Flagship Program</div>
+        <h2 class="section-title reveal">Work Transition Program</h2>
+        <p class="featured-desc reveal reveal-delay-1">Our signature program focuses on a modified duty schedule to return injured employees to work much earlier than traditional programs allow. Through progressive work assignments aligned with recovery progress, we eliminate the "sick role" mentality and reinforce workplace safety.</p>
+        <div class="featured-stat-row reveal reveal-delay-2">
+          <div class="featured-stat-item">
+            <span class="featured-stat-val">85%</span>
+            <span class="featured-stat-desc">Return-to-Work Rate</span>
+          </div>
+          <div class="featured-stat-item">
+            <span class="featured-stat-val">60</span>
+            <span class="featured-stat-desc">Day Program Duration</span>
+          </div>
+        </div>
+        <a href="#contact" class="btn btn-primary reveal reveal-delay-3">Learn More About This Program</a>
+      </div>
+      <div class="featured-benefits">
+        <div class="featured-benefit reveal reveal-delay-1">
+          <div class="featured-benefit-icon">
+            <svg width="20" height="20" fill="none" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M22 4L12 14.01l-3-3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <div>
+            <h4>Faster Recovery Through Engagement</h4>
+            <p>Patients recover more quickly when they stay active and engaged in modified work duties during rehabilitation.</p>
+          </div>
+        </div>
+        <div class="featured-benefit reveal reveal-delay-2">
+          <div class="featured-benefit-icon">
+            <svg width="20" height="20" fill="none" viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <div>
+            <h4>Reduced Disability Days</h4>
+            <p>Progressive work assignments significantly reduce total disability days and associated employer costs.</p>
+          </div>
+        </div>
+        <div class="featured-benefit reveal reveal-delay-3">
+          <div class="featured-benefit-icon">
+            <svg width="20" height="20" fill="none" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <h4>Workplace Safety Reinforcement</h4>
+            <p>Integration back into the workplace reinforces safety protocols and supports a culture of wellbeing.</p>
+          </div>
+        </div>
+        <div class="featured-benefit reveal reveal-delay-4">
+          <div class="featured-benefit-icon">
+            <svg width="20" height="20" fill="none" viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <h4>Significant Cost Reduction</h4>
+            <p>Employers see measurable reductions in workers' compensation costs and lost productivity.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STAFF -->
+  <section class="section staff" id="staff">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-label">Our Team</div>
+        <h2 class="section-title reveal">Experienced Medical Professionals</h2>
+        <p class="section-subtitle reveal reveal-delay-1">Our dedicated, friendly staff is committed to providing excellent service. Our team is multilingual, with fluency in English, Spanish, and Tagalog.</p>
+      </div>
+      <div class="staff-grid">
+
+        <div class="staff-card reveal reveal-delay-1">
+          <div class="staff-avatar teal">OT</div>
+          <h3>Oscar Tuazon, M.D.</h3>
+          <div class="staff-title">Medical Director</div>
+          <p>Known affectionately by his clients as "Dr. T," Dr. Tuazon ensures that all of his patients receive proper, quality care while maintaining excellent communication with their employers. He brings approximately 20 years of experience in industrial medicine.</p>
+        </div>
+
+        <div class="staff-card reveal reveal-delay-2">
+          <div class="staff-avatar navy">BL</div>
+          <h3>Billy Leon, M.D.</h3>
+          <div class="staff-title">Orthopedic Surgeon</div>
+          <p>Certified by the American Board of Orthopedic Surgery, Dr. Leon has been practicing general and orthopedic surgery since 1977. He is a member of the American Academy of Orthopedic Surgeons and the California Orthopedic Association.</p>
+          <div class="staff-credentials">
+            <span class="staff-credential">Board Certified</span>
+            <span class="staff-credential">AAOS Member</span>
+            <span class="staff-credential">COA Member</span>
+          </div>
+        </div>
+
+        <div class="staff-card reveal reveal-delay-3">
+          <div class="staff-avatar gold">SC</div>
+          <h3>Support &amp; Clinical Staff</h3>
+          <div class="staff-title">Dedicated Care Team</div>
+          <p>Our multilingual team provides exceptional patient care and administrative support. With fluency in English, Spanish, and Tagalog, we ensure clear communication with all patients and employers throughout the treatment process.</p>
+          <div class="staff-credentials">
+            <span class="staff-credential">English</span>
+            <span class="staff-credential">Spanish</span>
+            <span class="staff-credential">Tagalog</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TRANSPORTATION -->
+  <section class="section transport" id="transport">
+    <div class="transport-inner">
+      <div>
+        <div class="section-label">Complimentary Service</div>
+        <h2 class="section-title reveal">Free Patient Transportation</h2>
+        <p class="transport-desc reveal reveal-delay-1">We provide complimentary round-trip transportation for initial clinic visits from communities throughout the greater San Gabriel Valley area.</p>
+        <a href="#contact" class="btn btn-primary reveal reveal-delay-2" style="background: var(--teal);">Schedule a Ride</a>
+      </div>
+      <div class="transport-cities reveal reveal-delay-2">
+        <span class="transport-city">Baldwin Park</span>
+        <span class="transport-city">Covina</span>
+        <span class="transport-city">El Monte</span>
+        <span class="transport-city">Hacienda Heights</span>
+        <span class="transport-city">City of Industry</span>
+        <span class="transport-city">Irwindale</span>
+        <span class="transport-city">La Habra Heights</span>
+        <span class="transport-city">La Puente</span>
+        <span class="transport-city">Monrovia</span>
+        <span class="transport-city">Montebello</span>
+        <span class="transport-city">Rowland Heights</span>
+        <span class="transport-city">South El Monte</span>
+        <span class="transport-city">Walnut</span>
+        <span class="transport-city">West Covina</span>
+        <span class="transport-city">Whittier</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section contact" id="contact">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-label">Get In Touch</div>
+        <h2 class="section-title reveal">Contact Us</h2>
+        <p class="section-subtitle reveal reveal-delay-1">We're here to help. Reach out by phone, email, or visit our facility in City of Industry.</p>
+      </div>
+      <div class="contact-grid">
+
+        <div class="contact-card primary reveal">
+          <h3>Clinic Information</h3>
+          <div class="contact-item">
+            <div class="contact-item-icon">
+              <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2"/></svg>
+            </div>
+            <div>
+              <div class="contact-item-label">Address</div>
+              <div class="contact-item-value">16025 E. Gale Ave. Ste. B10<br>City of Industry, CA 91745</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">
+              <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <div class="contact-item-label">Phone</div>
+              <div class="contact-item-value"><a href="tel:6263366652">(626) 336-6652</a></div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">
+              <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" stroke-width="2"/></svg>
+            </div>
+            <div>
+              <div class="contact-item-label">Fax</div>
+              <div class="contact-item-value">(626) 336-6552</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">
+              <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="2"/><path d="M22 6l-10 7L2 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <div class="contact-item-label">Email</div>
+              <div class="contact-item-value"><a href="mailto:info@uicmedcenter.com">info@uicmedcenter.com</a></div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">
+              <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <div>
+              <div class="contact-item-label">Location</div>
+              <div class="contact-item-value">NW corner of Gale Ave. &amp; S. Stimson Ave.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-card reveal reveal-delay-2">
+          <h3>Our Team Contacts</h3>
+          <div class="contact-person">
+            <div class="contact-person-avatar" style="background: var(--teal);">OT</div>
+            <div>
+              <div class="contact-person-name">Oscar C. Tuazon, M.D.</div>
+              <div class="contact-person-role">Medical Director</div>
+            </div>
+            <a href="mailto:otuazon@uicmedcenter.com" class="contact-person-email">Email</a>
+          </div>
+          <div class="contact-person">
+            <div class="contact-person-avatar" style="background: var(--navy);">JT</div>
+            <div>
+              <div class="contact-person-name">Josefa G. Tuazon</div>
+              <div class="contact-person-role">Clinic Management</div>
+            </div>
+            <a href="mailto:jtuazon@uicmedcenter.com" class="contact-person-email">Email</a>
+          </div>
+          <div class="contact-person">
+            <div class="contact-person-avatar" style="background: var(--gold);">MR</div>
+            <div>
+              <div class="contact-person-name">Mayla Rivera</div>
+              <div class="contact-person-role">Director of Marketing</div>
+            </div>
+            <a href="mailto:mrivera@uicmedcenter.com" class="contact-person-email">Email</a>
+          </div>
+          <div class="contact-person">
+            <div class="contact-person-avatar" style="background: var(--teal-light);">VL</div>
+            <div>
+              <div class="contact-person-name">Veronica Luna</div>
+              <div class="contact-person-role">Physician Referrals</div>
+            </div>
+            <a href="mailto:vluna@uicmedcenter.com" class="contact-person-email">Email</a>
+          </div>
+          <div class="contact-person">
+            <div class="contact-person-avatar" style="background: var(--navy-light);">BR</div>
+            <div>
+              <div class="contact-person-name">Bryant Reyes</div>
+              <div class="contact-person-role">Employer Screenings</div>
+            </div>
+            <a href="mailto:screenings@uicmedcenter.com" class="contact-person-email">Email</a>
+          </div>
+          <div class="contact-person">
+            <div class="contact-person-avatar" style="background: var(--gray-600);">BC</div>
+            <div>
+              <div class="contact-person-name">Billing &amp; Collections</div>
+              <div class="contact-person-role">Linda Bate, Sue Hartley, Delia Munoz</div>
+            </div>
+            <a href="mailto:billing@uicmedcenter.com" class="contact-person-email">Email</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#" class="nav-brand" style="color: white;">
+            <div class="nav-logo">
+              <svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="nav-brand-text">Universal Industrial Care</div>
+          </a>
+          <p>A leader in occupational healthcare services for the greater Los Angeles and San Gabriel Valley region since 1999.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <a href="#about">About Us</a>
+          <a href="#services">Services</a>
+          <a href="#program">Programs</a>
+          <a href="#staff">Our Team</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <a href="#services">Physical Exams</a>
+          <a href="#services">Drug &amp; Alcohol Testing</a>
+          <a href="#services">Specialist Referrals</a>
+          <a href="#services">Physical Therapy</a>
+          <a href="#program">Work Transition</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <a href="tel:6263366652">(626) 336-6652</a>
+          <a href="mailto:info@uicmedcenter.com">info@uicmedcenter.com</a>
+          <a href="#contact">16025 E. Gale Ave. Ste. B10</a>
+          <a href="#contact">City of Industry, CA 91745</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2004&ndash;2026 Universal Industrial Care. All rights reserved.</span>
+        <span>16025 E. Gale Ave. Ste. B10, City of Industry, CA 91745</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Nav scroll effect
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    // Mobile menu toggle
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navLinks = document.getElementById('navLinks');
+    mobileToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+
+    // Scroll reveal
+    const revealElements = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    revealElements.forEach(el => observer.observe(el));
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  </script>
+
+</body>
+</html>

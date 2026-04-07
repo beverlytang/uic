@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Universal Industrial Care | Occupational Health Services</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <div class="logo">
+        <img src="images/uic_logo.gif" alt="UIC Logo" class="logo-img" />
+        <div>
+          <span class="logo-name">Universal Industrial Care</span>
+          <span class="logo-sub">Occupational Health &amp; Medicine</span>
+        </div>
+      </div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#about">About UIC</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#staff">Staff</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#location">Location</a></li>
+          <li><a href="tel:6263366652" class="btn-nav">Call Now</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Open menu">&#9776;</button>
+      </nav>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#about">About UIC</a>
+      <a href="#services">Services</a>
+      <a href="#staff">Staff</a>
+      <a href="#contact">Contact</a>
+      <a href="#location">Location</a>
+      <a href="tel:6263366652" class="btn-nav-mobile">Call (626) 336-6652</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+      <p class="hero-eyebrow">Trusted Since 1999</p>
+      <h1>Excellence in Occupational<br />Healthcare &amp; Industrial Medicine</h1>
+      <p class="hero-sub">A leader in providing occupational healthcare services for cost- and quality-conscious employers in the San Gabriel Valley region.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Get in Touch</a>
+        <a href="#services" class="btn-outline">Our Services</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="container stats-row">
+        <div class="stat">
+          <span class="stat-number">25+</span>
+          <span class="stat-label">Years of Service</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-number">5</span>
+          <span class="stat-label">Exam Rooms</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-number">M&ndash;F</span>
+          <span class="stat-label">8am &ndash; 5pm</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-number">24hr</span>
+          <span class="stat-label">Emergency Access</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About UIC -->
+  <section class="section about" id="about">
+    <div class="container about-grid">
+      <div class="about-badge-col">
+        <div class="about-badge">
+          <img src="images/uic_logo.gif" alt="UIC Logo" class="badge-logo" />
+          <span class="badge-year">Est. 1999</span>
+          <span class="badge-text">State-of-the-Art<br/>Medical Facility</span>
+        </div>
+        <ul class="about-highlights">
+          <li><span class="check">&#10003;</span> Workers' Compensation Specialists</li>
+          <li><span class="check">&#10003;</span> On-site X-ray Department</li>
+          <li><span class="check">&#10003;</span> Dedicated Drug Screening Area</li>
+          <li><span class="check">&#10003;</span> Trauma &amp; Urgent Care Room</li>
+          <li><span class="check">&#10003;</span> Physical Therapy On-site</li>
+        </ul>
+      </div>
+      <div class="about-text">
+        <p class="section-eyebrow">About UIC</p>
+        <h2>A Regional Leader in<br/>Occupational Healthcare</h2>
+        <p>Universal Industrial Care is a leader in providing occupational healthcare services for cost- and quality-conscious employers in the San Gabriel Valley. Our state-of-the-art facility, opened in August 1999, is staffed by experienced medical professionals dedicated to the well-being of your employees.</p>
+        <p>Our mission is to provide patients with superb medical care while maintaining an open line of communication with each of our employer clients. Our policy is to keep you promptly and fully informed of the medical status of each of your injured employees as they undergo treatment at Universal Industrial Care.</p>
+        <p>Our modern facility features five examination rooms, a trauma room, an on-site X-ray department, and dedicated drug screening areas &mdash; everything needed to handle workplace injuries and occupational health needs under one roof.</p>
+        <a href="#contact" class="btn-primary">Contact Our Team</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SERVICES  –  card grid + expandable detail panels
+       ============================================================ -->
+  <section class="section services" id="services">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-eyebrow">What We Offer</p>
+        <h2>Comprehensive Occupational Health Services</h2>
+        <p class="section-desc">From initial injury treatment to full disability management, we provide the complete spectrum of occupational and industrial medical care. Click any service below to learn more.</p>
+      </div>
+
+      <!-- Service cards (click to expand) -->
+      <div class="services-grid">
+
+        <!-- 1 ·  Return-to-Work -->
+        <div class="service-card" data-panel="panel-rtw">
+          <div class="service-icon">&#9889;</div>
+          <h3>Modified Duty &amp; Return-to-Work Program</h3>
+          <p>Our Work Transition Program enhances patient recovery and reduces employer costs &mdash; achieving an 85% successful return-to-work rate.</p>
+          <span class="card-more">Learn More &darr;</span>
+        </div>
+
+        <!-- 2 · Physicals -->
+        <div class="service-card" data-panel="panel-physicals">
+          <div class="service-icon">&#128203;</div>
+          <h3>Physicals &amp; Examinations</h3>
+          <p>Pre-employment, D.O.T., annual, and return-to-work physicals plus comprehensive diagnostic testing.</p>
+          <span class="card-more">Learn More &darr;</span>
+        </div>
+
+        <!-- 3 · Drug Testing -->
+        <div class="service-card" data-panel="panel-drug">
+          <div class="service-icon">&#128300;</div>
+          <h3>Drug &amp; Alcohol Testing</h3>
+          <p>Certified Medical Review Office performing NIDA and non-NIDA drug screens with legal chain-of-custody procedures.</p>
+          <span class="card-more">Learn More &darr;</span>
+        </div>
+
+        <!-- 4 · Physical Therapy -->
+        <div class="service-card" data-panel="panel-pt">
+          <div class="service-icon">&#127939;</div>
+          <h3>Physical Therapy</h3>
+          <p>A full-service physical therapy facility located on-site to support recovery and return to work.</p>
+          <span class="card-more">Learn More &darr;</span>
+        </div>
+
+        <!-- 5 · Specialist Referrals -->
+        <div class="service-card" data-panel="panel-specialists">
+          <div class="service-icon">&#128137;</div>
+          <h3>Specialist Referrals</h3>
+          <p>When additional expertise is needed, we refer patients to board-certified specialists across multiple disciplines.</p>
+          <span class="card-more">Learn More &darr;</span>
+        </div>
+
+        <!-- 6 · Urgent Care / Minor Surgery -->
+        <div class="service-card" data-panel="panel-urgent">
+          <div class="service-icon">&#128680;</div>
+          <h3>Urgent Care &amp; Minor Surgery</h3>
+          <p>Walk-in urgent care with 24-hour emergency access, plus in-office minor surgical procedures.</p>
+          <span class="card-more">Learn More &darr;</span>
+        </div>
+
+        <!-- 7 · Free Transportation -->
+        <div class="service-card" data-panel="panel-transport">
+          <div class="service-icon">&#128652;</div>
+          <h3>Free Transportation</h3>
+          <p>Complimentary transportation service for patients throughout the San Gabriel Valley and surrounding communities.</p>
+          <span class="card-more">Learn More &darr;</span>
+        </div>
+
+        <!-- 8 · Occupational Medicine / Disability Management -->
+        <div class="service-card" data-panel="panel-occ">
+          <div class="service-icon">&#9881;</div>
+          <h3>Occupational Medicine &amp; Disability Management</h3>
+          <p>Specialized occupational medicine and innovative disability management programs to reduce costs and recovery time.</p>
+          <span class="card-more">Learn More &darr;</span>
+        </div>
+
+      </div><!-- /services-grid -->
+
+      <!-- ── Expandable detail panels (hidden by default) ── -->
+
+      <div class="detail-panel" id="panel-rtw">
+        <button class="panel-close" aria-label="Close">&times;</button>
+        <h3>Modified Duty &amp; Return-to-Work Program</h3>
+        <p class="panel-lead">One of our primary goals is to enhance patient recovery and reduce employer costs through our <strong>Work Transition Program</strong>. Using modified duty scheduling, we facilitate earlier workplace reintegration.</p>
+        <div class="panel-cols">
+          <div>
+            <h4>Program Benefits</h4>
+            <ul>
+              <li><strong>85% successful work return rate</strong></li>
+              <li>Reduced disability days</li>
+              <li>Elimination of "sick role" mentality</li>
+              <li>Work becomes the rehabilitation medium</li>
+            </ul>
+          </div>
+          <div>
+            <h4>How It Works</h4>
+            <ul>
+              <li>Focus on patient abilities, not limitations</li>
+              <li>Typical 60-day program duration</li>
+              <li>Safe work methods and body mechanics reinforcement</li>
+              <li>Progressive work assignments aligned with recovery</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="detail-panel" id="panel-physicals">
+        <button class="panel-close" aria-label="Close">&times;</button>
+        <h3>Physicals &amp; Examinations</h3>
+        <p class="panel-lead">We offer a full range of physical examinations and diagnostic testing to meet employer and regulatory requirements.</p>
+        <div class="panel-cols">
+          <div>
+            <h4>Physical Exam Types</h4>
+            <ul>
+              <li>Pre-employment physicals</li>
+              <li>Basic physicals</li>
+              <li>D.O.T. physicals</li>
+              <li>Annual physicals</li>
+              <li>Return-to-work physicals</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Diagnostic Testing</h4>
+            <ul>
+              <li>Comprehensive vision testing</li>
+              <li>Audiometric testing</li>
+              <li>Spirometry (pulmonary function)</li>
+              <li>EKG</li>
+              <li>Respiratory fit exams</li>
+              <li>Asbestos X-rays</li>
+              <li>Carpal tunnel evaluation</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="detail-panel" id="panel-drug">
+        <button class="panel-close" aria-label="Close">&times;</button>
+        <h3>Drug &amp; Alcohol Testing</h3>
+        <p class="panel-lead">Our facility serves as a Certified Medical Review Office with dedicated drug screening areas and full chain-of-custody compliance.</p>
+        <div class="panel-cols">
+          <div>
+            <h4>Drug Testing</h4>
+            <ul>
+              <li>NIDA drug screens</li>
+              <li>Non-NIDA drug screens</li>
+              <li>Legal chain-of-custody procedures</li>
+              <li>Pre-employment, random, and post-incident testing</li>
+              <li>Dedicated collection areas</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Breath Alcohol Testing (B.A.T.)</h4>
+            <ul>
+              <li>Performed using Alcomonitor CC by Intoximeters</li>
+              <li>Confirmed results within fifteen minutes</li>
+              <li>DOT-compliant protocols</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="detail-panel" id="panel-pt">
+        <button class="panel-close" aria-label="Close">&times;</button>
+        <h3>Physical Therapy</h3>
+        <p class="panel-lead">A <strong>full-service physical therapy facility</strong> is located on-site, providing convenient access for patients undergoing rehabilitation. Our physical therapy services support recovery, restore function, and help injured workers return to work safely and efficiently.</p>
+      </div>
+
+      <div class="detail-panel" id="panel-specialists">
+        <button class="panel-close" aria-label="Close">&times;</button>
+        <h3>Specialist Referrals</h3>
+        <p class="panel-lead">When your condition requires additional expertise, we coordinate referrals to board-certified specialists across a wide range of disciplines:</p>
+        <div class="specialist-tags">
+          <span class="spec-tag">General Surgery</span>
+          <span class="spec-tag">Internal Medicine</span>
+          <span class="spec-tag">Neurology</span>
+          <span class="spec-tag">Obstetrics &amp; Gynecology</span>
+          <span class="spec-tag">Ophthalmology</span>
+          <span class="spec-tag">Orthopedics</span>
+          <span class="spec-tag">Physical &amp; Medical Rehabilitation</span>
+          <span class="spec-tag">Podiatry</span>
+          <span class="spec-tag">Reconstructive Surgery</span>
+        </div>
+      </div>
+
+      <div class="detail-panel" id="panel-urgent">
+        <button class="panel-close" aria-label="Close">&times;</button>
+        <h3>Urgent Care &amp; Minor Surgery</h3>
+        <p class="panel-lead">Walk-in urgent care services are available for non-life-threatening injuries and illnesses during regular business hours, with <strong>24-hour emergency facility access</strong> for after-hours emergencies. Our physicians also perform in-office minor surgical procedures in a clean, fully equipped clinical environment.</p>
+      </div>
+
+      <div class="detail-panel" id="panel-transport">
+        <button class="panel-close" aria-label="Close">&times;</button>
+        <h3>Free Transportation</h3>
+        <p class="panel-lead">We provide <strong>complimentary transportation</strong> for patients in the following communities:</p>
+        <div class="transport-tags">
+          <span class="spec-tag">Baldwin Park</span>
+          <span class="spec-tag">Covina</span>
+          <span class="spec-tag">El Monte</span>
+          <span class="spec-tag">Hacienda Heights</span>
+          <span class="spec-tag">City of Industry</span>
+          <span class="spec-tag">Irwindale</span>
+          <span class="spec-tag">La Habra Heights</span>
+          <span class="spec-tag">La Puente</span>
+          <span class="spec-tag">Monrovia</span>
+          <span class="spec-tag">Montebello</span>
+          <span class="spec-tag">Rowland Heights</span>
+          <span class="spec-tag">South El Monte</span>
+          <span class="spec-tag">Walnut</span>
+          <span class="spec-tag">West Covina</span>
+          <span class="spec-tag">Whittier</span>
+        </div>
+      </div>
+
+      <div class="detail-panel" id="panel-occ">
+        <button class="panel-close" aria-label="Close">&times;</button>
+        <h3>Occupational Medicine &amp; Disability Management</h3>
+        <p class="panel-lead">Our occupational medicine practice focuses on the prevention and treatment of work-related illness and injury. Paired with our innovative <strong>disability management programs</strong>, we help employers reduce costs while ensuring injured workers receive proper care and return to productive work as quickly as possible.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       STAFF
+       ============================================================ -->
+  <section class="section staff-section" id="staff">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-eyebrow">Our Team</p>
+        <h2>Experienced Medical Professionals</h2>
+        <p class="section-desc">Our dedicated, friendly staff is committed to providing excellent service. We are multi-lingual and are fluent in English, Spanish, and Tagalog.</p>
+      </div>
+
+      <div class="staff-grid">
+
+        <!-- Dr. Tuazon -->
+        <div class="staff-card">
+          <div class="staff-avatar">
+            <span class="avatar-initials">OT</span>
+          </div>
+          <div class="staff-info">
+            <h3>Oscar Tuazon, M.D.</h3>
+            <span class="staff-title">Medical Director</span>
+            <p>Known affectionately by his clients as "Dr. T," Dr. Tuazon ensures that all of his patients receive proper, quality care while maintaining excellent communication with their employers. He has dedicated nearly 20 years to industrial medicine.</p>
+            <a href="mailto:otuazon@uicmedcenter.com" class="staff-email">otuazon@uicmedcenter.com</a>
+          </div>
+        </div>
+
+        <!-- Dr. Leon -->
+        <div class="staff-card">
+          <div class="staff-avatar">
+            <span class="avatar-initials">BL</span>
+          </div>
+          <div class="staff-info">
+            <h3>Billy Leon, M.D.</h3>
+            <span class="staff-title">Orthopedic Surgeon</span>
+            <p>Certified by the American Board of Orthopedic Surgery, Dr. Leon has been performing general and orthopedic surgery since 1977. He is a member of the American Academy of Orthopedic Surgeons and the California Orthopedic Association.</p>
+            <div class="staff-details-toggle" data-target="leon-details">
+              <span>Hospital Affiliations</span>
+              <span class="toggle-arrow">&#9660;</span>
+            </div>
+            <div class="staff-details" id="leon-details">
+              <ul>
+                <li>Glendora Community Hospital</li>
+                <li>Santa Teresita Hospital, Duarte</li>
+                <li>Covina Valley Community Hospital, West Covina</li>
+                <li>Foothill Presbyterian Hospital, Glendora</li>
+                <li>Monrovia Community Hospital</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Clinic Management -->
+        <div class="staff-card">
+          <div class="staff-avatar secondary">
+            <span class="avatar-initials">JT</span>
+          </div>
+          <div class="staff-info">
+            <h3>Josefa G. Tuazon</h3>
+            <span class="staff-title">Clinic Management</span>
+            <p>Oversees the day-to-day operations of Universal Industrial Care, ensuring efficient clinic operations and quality patient care.</p>
+            <a href="mailto:jtuazon@uicmedcenter.com" class="staff-email">jtuazon@uicmedcenter.com</a>
+          </div>
+        </div>
+
+        <!-- Marketing Director -->
+        <div class="staff-card">
+          <div class="staff-avatar secondary">
+            <span class="avatar-initials">MR</span>
+          </div>
+          <div class="staff-info">
+            <h3>Mayla Rivera</h3>
+            <span class="staff-title">Director of Marketing</span>
+            <p>Manages employer relations, outreach, and marketing efforts for Universal Industrial Care.</p>
+            <a href="mailto:mrivera@uicmedcenter.com" class="staff-email">mrivera@uicmedcenter.com</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CONTACT & LOCATION
+       ============================================================ -->
+  <section class="section contact-location" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-eyebrow">Reach Us</p>
+        <h2>Contact &amp; Location</h2>
+        <p class="section-desc">We're conveniently located in City of Industry, CA &mdash; easily accessible from the San Gabriel Valley and surrounding areas.</p>
+      </div>
+      <div class="cl-grid">
+
+        <!-- Contact Card -->
+        <div class="cl-card contact-card" id="contact-info">
+          <h3>Get in Touch</h3>
+          <div class="contact-item">
+            <span class="ci-icon">&#128222;</span>
+            <div>
+              <span class="ci-label">Phone</span>
+              <a href="tel:6263366652" class="ci-value">(626) 336-6652</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="ci-icon">&#128224;</span>
+            <div>
+              <span class="ci-label">Fax</span>
+              <span class="ci-value">(626) 336-6552</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="ci-icon">&#9993;</span>
+            <div>
+              <span class="ci-label">Email</span>
+              <a href="mailto:info@uicmedcenter.com" class="ci-value">info@uicmedcenter.com</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="ci-icon">&#128205;</span>
+            <div>
+              <span class="ci-label">Address</span>
+              <span class="ci-value">16025 E Gale Ave, Suite B10<br/>City of Industry, CA 91745</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="ci-icon">&#128336;</span>
+            <div>
+              <span class="ci-label">Office Hours</span>
+              <span class="ci-value">Monday &ndash; Friday: 8:00 AM &ndash; 5:00 PM<br/>Saturday &amp; Sunday: Closed</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="ci-icon">&#128680;</span>
+            <div>
+              <span class="ci-label">Emergencies</span>
+              <span class="ci-value">24-hour emergency facility available</span>
+            </div>
+          </div>
+
+          <!-- Department Directory Toggle -->
+          <div class="dept-toggle" id="deptToggle">
+            <span>Department Directory</span>
+            <span class="toggle-arrow">&#9660;</span>
+          </div>
+          <div class="dept-directory" id="deptDirectory">
+            <div class="dept-row">
+              <span class="dept-name">Medical Director</span>
+              <span class="dept-person">Oscar C. Tuazon, M.D.</span>
+              <a href="mailto:otuazon@uicmedcenter.com" class="dept-email">otuazon@uicmedcenter.com</a>
+            </div>
+            <div class="dept-row">
+              <span class="dept-name">Clinic Management</span>
+              <span class="dept-person">Josefa G. Tuazon</span>
+              <a href="mailto:jtuazon@uicmedcenter.com" class="dept-email">jtuazon@uicmedcenter.com</a>
+            </div>
+            <div class="dept-row">
+              <span class="dept-name">Director of Marketing</span>
+              <span class="dept-person">Mayla Rivera</span>
+              <a href="mailto:mrivera@uicmedcenter.com" class="dept-email">mrivera@uicmedcenter.com</a>
+            </div>
+            <div class="dept-row">
+              <span class="dept-name">Billing &amp; Collections</span>
+              <span class="dept-person">Linda Bate, Sue Hartley, Delia Munoz</span>
+              <a href="mailto:billing@uicmedcenter.com" class="dept-email">billing@uicmedcenter.com</a>
+            </div>
+            <div class="dept-row">
+              <span class="dept-name">Physician Referrals</span>
+              <span class="dept-person">Veronica Luna</span>
+              <a href="mailto:vluna@uicmedcenter.com" class="dept-email">vluna@uicmedcenter.com</a>
+            </div>
+            <div class="dept-row">
+              <span class="dept-name">Employer Screenings</span>
+              <span class="dept-person">Bryant Reyes</span>
+              <a href="mailto:screenings@uicmedcenter.com" class="dept-email">screenings@uicmedcenter.com</a>
+            </div>
+          </div>
+
+          <a href="tel:6263366652" class="btn-primary full-width" style="margin-top:16px;">Call (626) 336-6652</a>
+        </div>
+
+        <!-- Location Card -->
+        <div class="cl-card location-card" id="location">
+          <h3>Our Location</h3>
+          <div class="map-placeholder">
+            <iframe
+              title="UIC Location Map"
+              src="https://maps.google.com/maps?q=16025+E+Gale+Ave+Ste+B10,+City+of+Industry,+CA+91745&output=embed"
+              width="100%"
+              height="260"
+              style="border:0;border-radius:8px;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+          <div class="location-detail">
+            <span class="ci-icon">&#127757;</span>
+            <div>
+              <span class="ci-label">Intersection</span>
+              <span class="ci-value">Northwest corner of Gale Avenue &amp; S. Stimson Avenue, City of Industry, CA</span>
+            </div>
+          </div>
+          <div class="location-detail">
+            <span class="ci-icon">&#128652;</span>
+            <div>
+              <span class="ci-label">Free Patient Transportation</span>
+              <span class="ci-value">Available throughout the San Gabriel Valley &mdash; Baldwin Park, Covina, El Monte, Hacienda Heights, Industry, Irwindale, La Habra Heights, La Puente, Monrovia, Montebello, Rowland Heights, South El Monte, Walnut, West Covina, and Whittier.</span>
+            </div>
+          </div>
+          <a
+            href="https://maps.google.com/?q=16025+E+Gale+Ave+Ste+B10,+City+of+Industry,+CA+91745"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-outline full-width"
+            style="margin-top:16px;">
+            Get Directions
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="images/uic_logo.gif" alt="UIC Logo" class="footer-logo" />
+        <div>
+          <span class="footer-name">Universal Industrial Care</span>
+          <span class="footer-tag">Occupational Health &amp; Medicine</span>
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="#about">About UIC</a>
+        <a href="#services">Services</a>
+        <a href="#staff">Staff</a>
+        <a href="#contact">Contact</a>
+        <a href="#location">Location</a>
+      </div>
+      <div class="footer-copy">
+        <p>&copy; 2004&ndash;2025 Universal Industrial Care. All rights reserved.</p>
+        <p>16025 E Gale Ave, Suite B10, City of Industry, CA 91745 &nbsp;|&nbsp; (626) 336-6652</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
