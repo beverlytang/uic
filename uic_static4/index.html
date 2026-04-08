@@ -1,0 +1,1823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Universal Industrial Care — Occupational Health Services</title>
+  <meta name="description" content="Comprehensive occupational health services including physical exams, drug testing, injury care, and return-to-work programs in City of Industry and Long Beach, CA.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================
+       DESIGN TOKENS
+       ============================================ */
+    :root {
+      /* Colors */
+      --color-purple-primary: #2F2F69;
+      --color-purple-dark: #1E1E4A;
+      --color-purple-light: #4A4A8A;
+      --color-red-accent: #B8292E;
+      --color-red-hover: #9A2024;
+      --color-blue-secondary: #336699;
+      --color-blue-hover: #2A5580;
+      --color-blue-light: #E8F0F8;
+      --color-black: #000000;
+      --color-gray-900: #1A1A1A;
+      --color-gray-700: #444444;
+      --color-gray-500: #6B6B6B;
+      --color-gray-300: #B0B0B0;
+      --color-gray-100: #F4F4F6;
+      --color-white: #FFFFFF;
+      --color-cream: #FAFAF8;
+      --color-purple-tint: #F0EFF8;
+
+      /* Typography */
+      --font-display: 'DM Serif Display', Georgia, serif;
+      --font-body: 'Source Sans 3', 'Segoe UI', sans-serif;
+
+      /* Font sizes - fluid */
+      --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.8125rem);
+      --text-sm: clamp(0.8125rem, 0.75rem + 0.3vw, 0.9375rem);
+      --text-base: clamp(0.9375rem, 0.875rem + 0.3vw, 1.0625rem);
+      --text-lg: clamp(1.0625rem, 1rem + 0.4vw, 1.25rem);
+      --text-xl: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+      --text-2xl: clamp(1.5rem, 1.2rem + 1.2vw, 2rem);
+      --text-3xl: clamp(1.875rem, 1.4rem + 1.8vw, 2.75rem);
+      --text-4xl: clamp(2.25rem, 1.6rem + 2.5vw, 3.5rem);
+
+      /* Spacing */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2rem;
+      --space-2xl: 3rem;
+      --space-3xl: 4rem;
+      --space-4xl: 6rem;
+      --space-section: clamp(4rem, 3rem + 4vw, 7rem);
+
+      /* Borders & Radii */
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-xl: 16px;
+
+      /* Shadows */
+      --shadow-sm: 0 1px 3px rgba(47, 47, 105, 0.06);
+      --shadow-md: 0 4px 12px rgba(47, 47, 105, 0.08);
+      --shadow-lg: 0 8px 30px rgba(47, 47, 105, 0.1);
+      --shadow-xl: 0 16px 50px rgba(47, 47, 105, 0.12);
+
+      /* Transitions */
+      --transition-fast: 150ms ease;
+      --transition-base: 250ms ease;
+      --transition-slow: 400ms cubic-bezier(0.16, 1, 0.3, 1);
+
+      /* Layout */
+      --max-width: 1200px;
+      --nav-height: 72px;
+    }
+
+    /* ============================================
+       RESET & BASE
+       ============================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: var(--nav-height);
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      line-height: 1.7;
+      color: var(--color-gray-900);
+      background: var(--color-white);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      color: var(--color-blue-secondary);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+
+    a:hover {
+      color: var(--color-blue-hover);
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible,
+    select:focus-visible,
+    summary:focus-visible {
+      outline: 3px solid var(--color-blue-secondary);
+      outline-offset: 2px;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-display);
+      color: var(--color-purple-primary);
+      line-height: 1.2;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-xl);
+    }
+
+    /* Screen reader only */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+
+    /* ============================================
+       SCROLL ANIMATIONS
+       ============================================ */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-in-left {
+      opacity: 0;
+      transform: translateX(-30px);
+      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .fade-in-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .fade-in-right {
+      opacity: 0;
+      transform: translateX(30px);
+      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .fade-in-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .stagger-1 { transition-delay: 0.05s; }
+    .stagger-2 { transition-delay: 0.1s; }
+    .stagger-3 { transition-delay: 0.15s; }
+    .stagger-4 { transition-delay: 0.2s; }
+    .stagger-5 { transition-delay: 0.25s; }
+    .stagger-6 { transition-delay: 0.3s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .fade-in, .fade-in-left, .fade-in-right {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    }
+
+    /* ============================================
+       NAVIGATION
+       ============================================ */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      height: var(--nav-height);
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid transparent;
+      transition: border-color var(--transition-base), box-shadow var(--transition-base);
+    }
+
+    .nav.scrolled {
+      border-bottom-color: rgba(47, 47, 105, 0.08);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-xl);
+    }
+
+    .nav__logo {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .nav__logo img {
+      height: 42px;
+      width: auto;
+    }
+
+    .nav__logo-text {
+      font-family: var(--font-display);
+      font-size: var(--text-lg);
+      color: var(--color-purple-primary);
+      white-space: nowrap;
+    }
+
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xl);
+      list-style: none;
+    }
+
+    .nav__link {
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--color-gray-700);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      position: relative;
+      padding: var(--space-xs) 0;
+      transition: color var(--transition-fast);
+    }
+
+    .nav__link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--color-red-accent);
+      transition: width var(--transition-base);
+    }
+
+    .nav__link:hover,
+    .nav__link.active {
+      color: var(--color-purple-primary);
+    }
+
+    .nav__link:hover::after,
+    .nav__link.active::after {
+      width: 100%;
+    }
+
+    /* Mobile menu button */
+    .nav__toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: var(--space-sm);
+      color: var(--color-purple-primary);
+    }
+
+    .nav__toggle svg {
+      width: 26px;
+      height: 26px;
+    }
+
+    @media (max-width: 768px) {
+      .nav__toggle {
+        display: block;
+      }
+
+      .nav__links {
+        position: fixed;
+        top: var(--nav-height);
+        left: 0;
+        right: 0;
+        background: var(--color-white);
+        flex-direction: column;
+        padding: var(--space-xl);
+        gap: var(--space-lg);
+        border-bottom: 1px solid var(--color-gray-100);
+        box-shadow: var(--shadow-lg);
+        transform: translateY(-110%);
+        transition: transform var(--transition-slow);
+      }
+
+      .nav__links.open {
+        transform: translateY(0);
+      }
+
+      .nav__logo-text {
+        font-size: var(--text-base);
+      }
+    }
+
+    /* ============================================
+       HERO SECTION
+       ============================================ */
+    .hero {
+      padding-top: calc(var(--nav-height) + var(--space-4xl));
+      padding-bottom: var(--space-section);
+      background: linear-gradient(165deg, var(--color-white) 0%, var(--color-purple-tint) 40%, var(--color-blue-light) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(47, 47, 105, 0.04) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-3xl);
+      align-items: center;
+    }
+
+    .hero__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      background: var(--color-white);
+      border: 1px solid rgba(47, 47, 105, 0.12);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: 100px;
+      font-size: var(--text-xs);
+      font-weight: 600;
+      color: var(--color-purple-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: var(--space-lg);
+    }
+
+    .hero__badge::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--color-red-accent);
+    }
+
+    .hero h1 {
+      font-size: var(--text-4xl);
+      margin-bottom: var(--space-lg);
+      color: var(--color-purple-primary);
+    }
+
+    .hero__subtitle {
+      font-size: var(--text-lg);
+      color: var(--color-gray-500);
+      line-height: 1.7;
+      max-width: 520px;
+      margin-bottom: var(--space-2xl);
+    }
+
+    .hero__cta-group {
+      display: flex;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+
+    .hero__image {
+      position: relative;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-xl);
+      aspect-ratio: 4 / 3;
+    }
+
+    .hero__image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero__image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius-xl);
+      box-shadow: inset 0 0 0 1px rgba(47, 47, 105, 0.08);
+      pointer-events: none;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        padding-top: calc(var(--nav-height) + var(--space-2xl));
+      }
+
+      .hero__inner {
+        grid-template-columns: 1fr;
+        gap: var(--space-2xl);
+      }
+
+      .hero__image {
+        order: -1;
+        max-height: 280px;
+      }
+    }
+
+    /* ============================================
+       BUTTONS
+       ============================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      padding: 0.75rem 1.75rem;
+      border-radius: var(--radius-md);
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all var(--transition-base);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn--primary {
+      background: var(--color-red-accent);
+      color: var(--color-white);
+    }
+
+    .btn--primary:hover {
+      background: var(--color-red-hover);
+      color: var(--color-white);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(184, 41, 46, 0.3);
+    }
+
+    .btn--secondary {
+      background: var(--color-blue-secondary);
+      color: var(--color-white);
+    }
+
+    .btn--secondary:hover {
+      background: var(--color-blue-hover);
+      color: var(--color-white);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(51, 102, 153, 0.3);
+    }
+
+    .btn--outline {
+      background: transparent;
+      color: var(--color-blue-secondary);
+      border: 2px solid var(--color-blue-secondary);
+      padding: calc(0.75rem - 2px) calc(1.75rem - 2px);
+    }
+
+    .btn--outline:hover {
+      background: var(--color-blue-secondary);
+      color: var(--color-white);
+      transform: translateY(-1px);
+    }
+
+    /* ============================================
+       SECTION HEADERS
+       ============================================ */
+    .section {
+      padding: var(--space-section) 0;
+    }
+
+    .section--alt {
+      background: var(--color-cream);
+    }
+
+    .section--purple {
+      background: var(--color-purple-primary);
+      color: var(--color-white);
+    }
+
+    .section--purple h2,
+    .section--purple h3 {
+      color: var(--color-white);
+    }
+
+    .section__header {
+      text-align: center;
+      margin-bottom: var(--space-3xl);
+    }
+
+    .section__label {
+      display: inline-block;
+      font-size: var(--text-xs);
+      font-weight: 700;
+      color: var(--color-red-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: var(--space-sm);
+    }
+
+    .section--purple .section__label {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .section__title {
+      font-size: var(--text-3xl);
+      margin-bottom: var(--space-md);
+    }
+
+    .section__subtitle {
+      font-size: var(--text-lg);
+      color: var(--color-gray-500);
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .section--purple .section__subtitle {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* ============================================
+       MISSION & VISION
+       ============================================ */
+    .mission-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-2xl);
+    }
+
+    .mission-card {
+      background: var(--color-white);
+      border-radius: var(--radius-lg);
+      padding: var(--space-2xl);
+      box-shadow: var(--shadow-md);
+      border: 1px solid rgba(47, 47, 105, 0.06);
+      transition: box-shadow var(--transition-base), transform var(--transition-base);
+    }
+
+    .mission-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-2px);
+    }
+
+    .mission-card__icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: var(--space-lg);
+      font-size: 1.5rem;
+    }
+
+    .mission-card__icon--purple {
+      background: var(--color-purple-tint);
+      color: var(--color-purple-primary);
+    }
+
+    .mission-card__icon--blue {
+      background: var(--color-blue-light);
+      color: var(--color-blue-secondary);
+    }
+
+    .mission-card h3 {
+      font-size: var(--text-xl);
+      margin-bottom: var(--space-md);
+    }
+
+    .mission-card p {
+      color: var(--color-gray-700);
+      line-height: 1.8;
+    }
+
+    @media (max-width: 768px) {
+      .mission-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ============================================
+       GOALS
+       ============================================ */
+    .goals-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-xl);
+    }
+
+    .goal-card {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-lg);
+      padding: var(--space-xl);
+      transition: background var(--transition-base), border-color var(--transition-base);
+    }
+
+    .goal-card:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .goal-card__number {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      color: rgba(255, 255, 255, 0.2);
+      margin-bottom: var(--space-sm);
+    }
+
+    .goal-card h3 {
+      font-size: var(--text-lg);
+      margin-bottom: var(--space-sm);
+    }
+
+    .goal-card p {
+      font-size: var(--text-sm);
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.7;
+    }
+
+    @media (max-width: 900px) {
+      .goals-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .goals-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ============================================
+       SERVICES
+       ============================================ */
+    .services-list {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .service-item {
+      border: 1px solid rgba(47, 47, 105, 0.08);
+      border-radius: var(--radius-lg);
+      margin-bottom: var(--space-md);
+      background: var(--color-white);
+      overflow: hidden;
+      transition: box-shadow var(--transition-base);
+    }
+
+    .service-item:hover {
+      box-shadow: var(--shadow-md);
+    }
+
+    .service-item summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-lg) var(--space-xl);
+      cursor: pointer;
+      list-style: none;
+      font-weight: 600;
+      font-size: var(--text-lg);
+      color: var(--color-purple-primary);
+      font-family: var(--font-display);
+      transition: background var(--transition-fast);
+    }
+
+    .service-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .service-item summary:hover {
+      background: var(--color-purple-tint);
+    }
+
+    .service-item summary::after {
+      content: '';
+      width: 10px;
+      height: 10px;
+      border-right: 2px solid var(--color-purple-light);
+      border-bottom: 2px solid var(--color-purple-light);
+      transform: rotate(45deg);
+      transition: transform var(--transition-base);
+      flex-shrink: 0;
+      margin-left: var(--space-md);
+    }
+
+    .service-item[open] summary::after {
+      transform: rotate(-135deg);
+    }
+
+    .service-item__content {
+      padding: 0 var(--space-xl) var(--space-xl);
+      color: var(--color-gray-700);
+      line-height: 1.8;
+    }
+
+    .service-item__content ul {
+      margin: var(--space-md) 0;
+      padding-left: var(--space-xl);
+    }
+
+    .service-item__content li {
+      margin-bottom: var(--space-xs);
+    }
+
+    .service-item__content li::marker {
+      color: var(--color-red-accent);
+    }
+
+    .service-item__content p {
+      margin-bottom: var(--space-md);
+    }
+
+    .service-item__content p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ============================================
+       STAFF
+       ============================================ */
+    .staff-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-3xl);
+      align-items: center;
+      margin-bottom: var(--space-3xl);
+    }
+
+    .staff-photo {
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      aspect-ratio: 3 / 2;
+    }
+
+    .staff-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .staff-intro__text p {
+      font-size: var(--text-lg);
+      color: var(--color-gray-700);
+      line-height: 1.8;
+      margin-bottom: var(--space-md);
+    }
+
+    .staff-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-xl);
+    }
+
+    .staff-card {
+      display: flex;
+      align-items: center;
+      gap: var(--space-lg);
+      background: var(--color-white);
+      border-radius: var(--radius-lg);
+      padding: var(--space-xl);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(47, 47, 105, 0.06);
+      transition: box-shadow var(--transition-base), transform var(--transition-base);
+    }
+
+    .staff-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    .staff-card__avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--color-purple-tint);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .staff-card__avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .staff-card__avatar--initials {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      color: var(--color-purple-primary);
+    }
+
+    .staff-card h3 {
+      font-size: var(--text-base);
+      margin-bottom: 2px;
+    }
+
+    .staff-card__role {
+      font-size: var(--text-sm);
+      color: var(--color-blue-secondary);
+      font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+      .staff-intro {
+        grid-template-columns: 1fr;
+      }
+
+      .staff-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ============================================
+       FACILITY
+       ============================================ */
+    .facility-highlight {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-3xl);
+      align-items: center;
+    }
+
+    .facility-highlight__text h3 {
+      font-size: var(--text-2xl);
+      margin-bottom: var(--space-lg);
+    }
+
+    .facility-highlight__text p {
+      color: var(--color-gray-700);
+      line-height: 1.8;
+      margin-bottom: var(--space-lg);
+    }
+
+    .facility-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
+    }
+
+    .facility-feature {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-size: var(--text-sm);
+      font-weight: 500;
+      color: var(--color-gray-700);
+    }
+
+    .facility-feature::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--color-red-accent);
+      flex-shrink: 0;
+    }
+
+    .facility-image {
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      aspect-ratio: 4 / 3;
+    }
+
+    .facility-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @media (max-width: 768px) {
+      .facility-highlight {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ============================================
+       LOCATIONS
+       ============================================ */
+    .locations-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-2xl);
+      margin-bottom: var(--space-2xl);
+    }
+
+    .location-card {
+      background: var(--color-white);
+      border-radius: var(--radius-lg);
+      padding: var(--space-2xl);
+      box-shadow: var(--shadow-md);
+      border: 1px solid rgba(47, 47, 105, 0.06);
+    }
+
+    .location-card__label {
+      font-size: var(--text-xs);
+      font-weight: 700;
+      color: var(--color-red-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: var(--space-sm);
+    }
+
+    .location-card h3 {
+      font-size: var(--text-xl);
+      margin-bottom: var(--space-lg);
+    }
+
+    .location-card__detail {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-md);
+      margin-bottom: var(--space-md);
+      font-size: var(--text-sm);
+      color: var(--color-gray-700);
+    }
+
+    .location-card__detail:last-child {
+      margin-bottom: 0;
+    }
+
+    .location-card__icon {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      color: var(--color-purple-primary);
+      margin-top: 2px;
+    }
+
+    .location-card__actions {
+      display: flex;
+      gap: var(--space-md);
+      margin-top: var(--space-xl);
+    }
+
+    .map-container {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      aspect-ratio: 16 / 9;
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    @media (max-width: 768px) {
+      .locations-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ============================================
+       CONTACT
+       ============================================ */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-3xl);
+      align-items: start;
+    }
+
+    .contact-info h3 {
+      font-size: var(--text-2xl);
+      margin-bottom: var(--space-lg);
+    }
+
+    .contact-info p {
+      color: var(--color-gray-700);
+      line-height: 1.8;
+      margin-bottom: var(--space-xl);
+    }
+
+    .contact-hours {
+      background: var(--color-purple-tint);
+      border-radius: var(--radius-md);
+      padding: var(--space-lg);
+      margin-bottom: var(--space-xl);
+    }
+
+    .contact-hours h4 {
+      font-size: var(--text-base);
+      margin-bottom: var(--space-sm);
+    }
+
+    .contact-hours p {
+      margin-bottom: 0;
+      font-weight: 500;
+    }
+
+    .contact-form {
+      background: var(--color-white);
+      border-radius: var(--radius-lg);
+      padding: var(--space-2xl);
+      box-shadow: var(--shadow-lg);
+      border: 1px solid rgba(47, 47, 105, 0.06);
+    }
+
+    .contact-form h3 {
+      font-size: var(--text-xl);
+      margin-bottom: var(--space-xl);
+    }
+
+    .form-group {
+      margin-bottom: var(--space-lg);
+    }
+
+    .form-group label {
+      display: block;
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--color-gray-900);
+      margin-bottom: var(--space-xs);
+    }
+
+    .form-group label .required {
+      color: var(--color-red-accent);
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--color-gray-300);
+      border-radius: var(--radius-md);
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      color: var(--color-gray-900);
+      transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+      background: var(--color-white);
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: var(--color-gray-300);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--color-blue-secondary);
+      box-shadow: 0 0 0 3px rgba(51, 102, 153, 0.15);
+    }
+
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
+    }
+
+    @media (max-width: 600px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .contact-form .btn {
+      width: 100%;
+      padding: 1rem;
+      font-size: var(--text-base);
+    }
+
+    @media (max-width: 768px) {
+      .contact-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ============================================
+       FOOTER
+       ============================================ */
+    .footer {
+      background: var(--color-purple-dark);
+      color: rgba(255, 255, 255, 0.6);
+      padding: var(--space-3xl) 0 var(--space-xl);
+    }
+
+    .footer__inner {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: var(--space-2xl);
+      margin-bottom: var(--space-2xl);
+    }
+
+    .footer__brand p {
+      margin-top: var(--space-md);
+      font-size: var(--text-sm);
+      line-height: 1.8;
+      max-width: 320px;
+    }
+
+    .footer__brand img {
+      height: 36px;
+      filter: brightness(10);
+    }
+
+    .footer h4 {
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      font-weight: 700;
+      color: var(--color-white);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: var(--space-lg);
+    }
+
+    .footer ul {
+      list-style: none;
+    }
+
+    .footer li {
+      margin-bottom: var(--space-sm);
+    }
+
+    .footer a {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: var(--text-sm);
+      transition: color var(--transition-fast);
+    }
+
+    .footer a:hover {
+      color: var(--color-white);
+    }
+
+    .footer__bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: var(--space-xl);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: var(--text-xs);
+      flex-wrap: wrap;
+      gap: var(--space-md);
+    }
+
+    .footer__langs {
+      display: flex;
+      gap: var(--space-md);
+    }
+
+    @media (max-width: 768px) {
+      .footer__inner {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================
+       NAVIGATION
+       ========================================== -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a href="#" class="nav__logo" aria-label="Universal Industrial Care - Home">
+        <img src="images/uic_logo.gif" alt="UIC Logo" width="42" height="42">
+        <span class="nav__logo-text">Universal Industrial Care</span>
+      </a>
+      <button class="nav__toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Toggle menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6" class="line-top"/>
+          <line x1="3" y1="12" x2="21" y2="12" class="line-mid"/>
+          <line x1="3" y1="18" x2="21" y2="18" class="line-bot"/>
+        </svg>
+      </button>
+      <ul class="nav__links" id="nav-links" role="list">
+        <li><a href="#about" class="nav__link">About</a></li>
+        <li><a href="#services" class="nav__link">Services</a></li>
+        <li><a href="#staff" class="nav__link">Staff</a></li>
+        <li><a href="#locations" class="nav__link">Locations</a></li>
+        <li><a href="#contact" class="nav__link">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ==========================================
+       HERO
+       ========================================== -->
+  <section class="hero" id="about">
+    <div class="container">
+      <div class="hero__inner">
+        <div class="fade-in">
+          <div class="hero__badge">Serving Employers Since 1999</div>
+          <h1>Comprehensive Occupational Health Services</h1>
+          <p class="hero__subtitle">
+            Your one-stop resource for workplace health compliance, injury prevention, rapid care, and employee wellness programs.
+          </p>
+          <div class="hero__cta-group">
+            <a href="#contact" class="btn btn--primary">Request Appointment</a>
+            <a href="#services" class="btn btn--outline">Our Services</a>
+          </div>
+        </div>
+        <div class="hero__image fade-in-right">
+          <img src="images/clinic_4r.jpg" alt="UIC Medical Center state-of-the-art facility" width="600" height="450">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       MISSION & VISION
+       ========================================== -->
+  <section class="section" id="mission">
+    <div class="container">
+      <div class="section__header fade-in">
+        <span class="section__label">Who We Are</span>
+        <h2 class="section__title">Our Mission &amp; Vision</h2>
+        <p class="section__subtitle">
+          Dedicated to protecting and enhancing workforce well-being through quality medical care and employer partnerships.
+        </p>
+      </div>
+      <div class="mission-grid">
+        <div class="mission-card fade-in stagger-1">
+          <div class="mission-card__icon mission-card__icon--purple" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+            </svg>
+          </div>
+          <h3>Our Mission</h3>
+          <p>
+            To provide comprehensive, compassionate and timely occupational health services that protect and enhance the well-being, safety, and productivity of the workforce. We are committed to delivering quality medical care, promoting injury prevention, and fostering healthier work environments through employer-employee partnerships.
+          </p>
+        </div>
+        <div class="mission-card fade-in stagger-2">
+          <div class="mission-card__icon mission-card__icon--blue" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 16v-4M12 8h.01"/>
+            </svg>
+          </div>
+          <h3>Our Vision</h3>
+          <p>
+            To set the standard for excellence in occupational medicine through evidence-based care and advanced technology, improving workforce health, safety, and productivity. We strive to be the premier one-stop resource for all employer occupational health needs.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       GOALS
+       ========================================== -->
+  <section class="section section--purple">
+    <div class="container">
+      <div class="section__header fade-in">
+        <span class="section__label">What We Do</span>
+        <h2 class="section__title">Our Core Objectives</h2>
+        <p class="section__subtitle">
+          A comprehensive approach to occupational health — from prevention to treatment to return-to-work.
+        </p>
+      </div>
+      <div class="goals-grid">
+        <div class="goal-card fade-in stagger-1">
+          <div class="goal-card__number">01</div>
+          <h3>Workplace Compliance</h3>
+          <p>Maintain adherence to OSHA and other regulatory requirements to keep your workforce compliant and protected.</p>
+        </div>
+        <div class="goal-card fade-in stagger-2">
+          <div class="goal-card__number">02</div>
+          <h3>Injury Prevention</h3>
+          <p>Implement proactive screenings, ergonomics programs, and safety education to reduce workplace incidents.</p>
+        </div>
+        <div class="goal-card fade-in stagger-3">
+          <div class="goal-card__number">03</div>
+          <h3>Rapid Injury Care</h3>
+          <p>Deliver prompt evaluation and treatment to minimize downtime and get your employees the care they need fast.</p>
+        </div>
+        <div class="goal-card fade-in stagger-4">
+          <div class="goal-card__number">04</div>
+          <h3>Employee Wellness</h3>
+          <p>Offer vaccinations, health exams, and chronic condition management for a healthier, more productive workforce.</p>
+        </div>
+        <div class="goal-card fade-in stagger-5">
+          <div class="goal-card__number">05</div>
+          <h3>Safe Return-to-Work</h3>
+          <p>Conduct fit-for-duty exams and coordinate modified duty programs to ensure safe, effective workplace reintegration.</p>
+        </div>
+        <div class="goal-card fade-in stagger-6">
+          <div class="goal-card__number">06</div>
+          <h3>Health Records</h3>
+          <p>Ensure secure tracking of employee health information with compliant, organized recordkeeping systems.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SERVICES
+       ========================================== -->
+  <section class="section section--alt" id="services">
+    <div class="container">
+      <div class="section__header fade-in">
+        <span class="section__label">What We Offer</span>
+        <h2 class="section__title">Our Services</h2>
+        <p class="section__subtitle">
+          From physical exams to therapy and drug testing, we provide a full spectrum of occupational health services.
+        </p>
+      </div>
+      <div class="services-list">
+        <details class="service-item fade-in stagger-1">
+          <summary>Return-to-Work Programs</summary>
+          <div class="service-item__content">
+            <p>Our Work Transition Program uses modified duty schedules to facilitate early workplace reintegration for injured employees, with an <strong>85% successful return-to-work rate</strong>.</p>
+            <ul>
+              <li>Typical 60-day program duration</li>
+              <li>Uses actual work as a rehabilitation medium</li>
+              <li>Focuses on patient capabilities, not limitations</li>
+              <li>Progressively expands duties matching recovery</li>
+              <li>Frequent physician progress updates to employers</li>
+              <li>Promotes safe work methods and body mechanics</li>
+              <li>Eliminates "sick role" mentality</li>
+              <li>Maintains work routine connection</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="service-item fade-in stagger-2">
+          <summary>Physical Examinations</summary>
+          <div class="service-item__content">
+            <p>Comprehensive examination services to meet all employer and regulatory requirements:</p>
+            <ul>
+              <li>Pre-employment physicals</li>
+              <li>DOT physicals</li>
+              <li>Annual physicals</li>
+              <li>Return-to-work physicals</li>
+              <li>Vision &amp; audiometric testing</li>
+              <li>Spirometry &amp; EKG</li>
+              <li>Respiratory fit exams</li>
+              <li>Asbestos X-rays</li>
+              <li>Carpal tunnel evaluations</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="service-item fade-in stagger-3">
+          <summary>Drug &amp; Alcohol Testing</summary>
+          <div class="service-item__content">
+            <p>Certified Medical Review Office performing chain-of-custody drug screens with both NIDA and non-NIDA options.</p>
+            <p>Breath alcohol testing uses the Alcomonitor CC device, providing confirmed results within <strong>fifteen minutes</strong>. All protocols are NHTSA-approved and DOT-compliant.</p>
+          </div>
+        </details>
+
+        <details class="service-item fade-in stagger-4">
+          <summary>On-Site Physical &amp; Occupational Therapy</summary>
+          <div class="service-item__content">
+            <p>Our full-service therapy facility is located on-site, providing convenient access to both physical and occupational therapy. This allows seamless coordination between treating physicians and therapists for optimal recovery outcomes.</p>
+          </div>
+        </details>
+
+        <details class="service-item fade-in stagger-5">
+          <summary>Specialist Referrals</summary>
+          <div class="service-item__content">
+            <p>When necessary, patients receive referrals to specialists across multiple medical fields:</p>
+            <ul>
+              <li>General Surgery</li>
+              <li>Internal Medicine</li>
+              <li>Neurology</li>
+              <li>Obstetrics &amp; Gynecology</li>
+              <li>Ophthalmology</li>
+              <li>Orthopedics</li>
+              <li>Physical &amp; Medical Rehabilitation</li>
+              <li>Podiatry</li>
+              <li>Reconstructive Surgery</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       FACILITY
+       ========================================== -->
+  <section class="section">
+    <div class="container">
+      <div class="facility-highlight">
+        <div class="facility-highlight__text fade-in-left">
+          <span class="section__label">Our Facility</span>
+          <h3>State-of-the-Art Medical Center</h3>
+          <p>
+            Opened in August 1999, our facility is purpose-built for occupational health care, providing everything employers need under one roof.
+          </p>
+          <div class="facility-features">
+            <div class="facility-feature">Five exam rooms</div>
+            <div class="facility-feature">Trauma room</div>
+            <div class="facility-feature">X-ray department</div>
+            <div class="facility-feature">Drug screening areas</div>
+            <div class="facility-feature">On-site therapy</div>
+            <div class="facility-feature">Multilingual staff</div>
+          </div>
+        </div>
+        <div class="facility-image fade-in-right">
+          <img src="images/services_1.jpg" alt="UIC Medical Center facility interior" width="600" height="450">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       STAFF
+       ========================================== -->
+  <section class="section section--alt" id="staff">
+    <div class="container">
+      <div class="section__header fade-in">
+        <span class="section__label">Our Team</span>
+        <h2 class="section__title">Meet Our Staff</h2>
+        <p class="section__subtitle">
+          A dedicated, friendly team committed to providing excellent service. Fluent in English, Spanish, and Tagalog.
+        </p>
+      </div>
+
+      <div class="staff-intro fade-in">
+        <div class="staff-photo">
+          <img src="images/Group-2004-03-17.jpg" alt="Universal Industrial Care team photo" width="600" height="400">
+        </div>
+        <div class="staff-intro__text">
+          <p>Our medical professionals bring years of experience in occupational health, working closely with employers to deliver efficient, compassionate care.</p>
+          <p>From our Medical Director to our administrative team, every staff member is focused on getting your employees healthy and back to work safely.</p>
+        </div>
+      </div>
+
+      <h3 class="sr-only">In-House Specialists</h3>
+      <div class="staff-grid">
+        <div class="staff-card fade-in stagger-1">
+          <div class="staff-card__avatar">
+            <img src="images/OTuazon.jpg" alt="Dr. Oscar C. Tuazon" width="64" height="64">
+          </div>
+          <div>
+            <h3>Oscar C. Tuazon, M.D.</h3>
+            <span class="staff-card__role">Medical Director</span>
+          </div>
+        </div>
+        <div class="staff-card fade-in stagger-2">
+          <div class="staff-card__avatar staff-card__avatar--initials" aria-hidden="true">WS</div>
+          <div>
+            <h3>Dr. William Simpson, M.D.</h3>
+            <span class="staff-card__role">Orthopedic Surgery</span>
+          </div>
+        </div>
+        <div class="staff-card fade-in stagger-3">
+          <div class="staff-card__avatar">
+            <img src="images/Leon.jpg" alt="Dr. Norberto Tuazon" width="64" height="64">
+          </div>
+          <div>
+            <h3>Dr. Norberto Tuazon, M.D.</h3>
+            <span class="staff-card__role">Psychiatry &amp; Mental Health</span>
+          </div>
+        </div>
+        <div class="staff-card fade-in stagger-4">
+          <div class="staff-card__avatar staff-card__avatar--initials" aria-hidden="true">LL</div>
+          <div>
+            <h3>Louise Lontoc, PT</h3>
+            <span class="staff-card__role">Physical Therapy</span>
+          </div>
+        </div>
+        <div class="staff-card fade-in stagger-5">
+          <div class="staff-card__avatar staff-card__avatar--initials" aria-hidden="true">DP</div>
+          <div>
+            <h3>David Peig, OT</h3>
+            <span class="staff-card__role">Occupational Therapy</span>
+          </div>
+        </div>
+        <div class="staff-card fade-in stagger-6">
+          <div class="staff-card__avatar staff-card__avatar--initials" aria-hidden="true">JT</div>
+          <div>
+            <h3>Josefa G. Tuazon</h3>
+            <span class="staff-card__role">Clinic Manager</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       LOCATIONS
+       ========================================== -->
+  <section class="section" id="locations">
+    <div class="container">
+      <div class="section__header fade-in">
+        <span class="section__label">Find Us</span>
+        <h2 class="section__title">Our Locations</h2>
+        <p class="section__subtitle">
+          Two convenient locations to serve employers across the greater Los Angeles area.
+        </p>
+      </div>
+
+      <div class="locations-grid fade-in">
+        <div class="location-card">
+          <span class="location-card__label">Main Office</span>
+          <h3>City of Industry</h3>
+          <div class="location-card__detail">
+            <svg class="location-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+            <span>16025 E. Gale Ave. Ste. B10<br>City of Industry, CA 91745</span>
+          </div>
+          <div class="location-card__detail">
+            <svg class="location-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+            <span>(626) 336-6652</span>
+          </div>
+          <div class="location-card__detail">
+            <svg class="location-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+              <polyline points="2 7 12 13 22 7"/>
+            </svg>
+            <span>Fax: (626) 336-6552</span>
+          </div>
+          <div class="location-card__detail">
+            <svg class="location-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+            <span>Mon&ndash;Fri: 8:30 AM &ndash; 5:00 PM</span>
+          </div>
+          <div class="location-card__actions">
+            <a href="https://www.google.com/maps/dir//16025+E+Gale+Ave+Ste+B10,+City+of+Industry,+CA+91745" target="_blank" rel="noopener noreferrer" class="btn btn--secondary">Get Directions</a>
+          </div>
+        </div>
+
+        <div class="location-card">
+          <span class="location-card__label">Second Location</span>
+          <h3>Long Beach</h3>
+          <div class="location-card__detail">
+            <svg class="location-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+            <span>701 E 28th Street Suite 301<br>Long Beach, CA 90806</span>
+          </div>
+          <div class="location-card__detail">
+            <svg class="location-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+            <span>(562) 980-0058</span>
+          </div>
+          <div class="location-card__detail">
+            <svg class="location-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+              <polyline points="2 7 12 13 22 7"/>
+            </svg>
+            <span>Fax: (562) 980-0048</span>
+          </div>
+          <div class="location-card__detail">
+            <svg class="location-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+            <span>Mon&ndash;Fri: 8:30 AM &ndash; 5:00 PM</span>
+          </div>
+          <div class="location-card__actions">
+            <a href="https://www.google.com/maps/dir//701+E+28th+St+Suite+301,+Long+Beach,+CA+90806" target="_blank" rel="noopener noreferrer" class="btn btn--secondary">Get Directions</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="map-container fade-in">
+        <iframe
+          title="UIC Medical Center - City of Industry location on Google Maps"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3318.8!2d-117.9425!3d34.0032!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2d4d08b4a4e7d%3A0x4b5e5a5d5c5f5e5d!2s16025+E+Gale+Ave+%23B10%2C+City+of+Industry%2C+CA+91745!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       CONTACT
+       ========================================== -->
+  <section class="section section--alt" id="contact">
+    <div class="container">
+      <div class="section__header fade-in">
+        <span class="section__label">Get In Touch</span>
+        <h2 class="section__title">Contact Us</h2>
+        <p class="section__subtitle">
+          Ready to set up occupational health services for your company? We're here to help.
+        </p>
+      </div>
+
+      <div class="contact-layout">
+        <div class="contact-info fade-in-left">
+          <h3>We'd Love to Hear From You</h3>
+          <p>
+            Whether you need to schedule an appointment, set up employer services, or have questions about our programs, fill out the form and our team will respond promptly.
+          </p>
+
+          <div class="contact-hours">
+            <h4>Office Hours</h4>
+            <p>Monday &ndash; Friday: 8:30 AM &ndash; 5:00 PM</p>
+          </div>
+
+          <h4 style="font-family: var(--font-display); color: var(--color-purple-primary); margin-bottom: var(--space-md);">Key Departments</h4>
+          <div style="display: flex; flex-direction: column; gap: var(--space-sm);">
+            <div class="facility-feature">Physician Referrals</div>
+            <div class="facility-feature">Employer Screenings</div>
+            <div class="facility-feature">Billing &amp; Collections</div>
+            <div class="facility-feature">Marketing &amp; Partnerships</div>
+          </div>
+        </div>
+
+        <form class="contact-form fade-in-right" action="https://formsubmit.co/info@uicmedcenter.com" method="POST">
+          <h3>Send Us a Message</h3>
+          <!-- Honeypot -->
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+          <!-- Disable captcha -->
+          <input type="hidden" name="_captcha" value="false">
+          <!-- Success redirect -->
+          <input type="hidden" name="_next" value="">
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Full Name <span class="required" aria-label="required">*</span></label>
+              <input type="text" id="name" name="name" required placeholder="John Doe" autocomplete="name">
+            </div>
+            <div class="form-group">
+              <label for="company">Company Name</label>
+              <input type="text" id="company" name="company" placeholder="Your Company" autocomplete="organization">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email <span class="required" aria-label="required">*</span></label>
+              <input type="email" id="email" name="email" required placeholder="john@company.com" autocomplete="email">
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567" autocomplete="tel">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="department">Department</label>
+            <select id="department" name="department">
+              <option value="">Select a department...</option>
+              <option value="general">General Inquiry</option>
+              <option value="appointments">Appointments</option>
+              <option value="employer-services">Employer Services</option>
+              <option value="screenings">Employer Screenings</option>
+              <option value="referrals">Physician Referrals</option>
+              <option value="billing">Billing &amp; Collections</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message <span class="required" aria-label="required">*</span></label>
+            <textarea id="message" name="message" required placeholder="How can we help you?"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn--primary">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       FOOTER
+       ========================================== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <img src="images/uic_logo.gif" alt="UIC Logo" width="36" height="36">
+          <p>Providing comprehensive occupational health services to employers across the greater Los Angeles area since 1999.</p>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <ul role="list">
+            <li><a href="#about">About UIC</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#staff">Our Staff</a></li>
+            <li><a href="#locations">Locations</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Locations</h4>
+          <ul role="list">
+            <li><a href="https://www.google.com/maps/dir//16025+E+Gale+Ave+Ste+B10,+City+of+Industry,+CA+91745" target="_blank" rel="noopener noreferrer">City of Industry</a></li>
+            <li><a href="https://www.google.com/maps/dir//701+E+28th+St+Suite+301,+Long+Beach,+CA+90806" target="_blank" rel="noopener noreferrer">Long Beach</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; 2004&ndash;2025 Universal Industrial Care. All rights reserved.</span>
+        <div class="footer__langs">
+          <span>English</span>
+          <span>Espa&ntilde;ol</span>
+          <span>Tagalog</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================
+       SCRIPTS
+       ========================================== -->
+  <script>
+    // Navigation scroll effect
+    const nav = document.querySelector('.nav');
+    const navToggle = document.querySelector('.nav__toggle');
+    const navLinks = document.querySelector('.nav__links');
+    const navLinkItems = document.querySelectorAll('.nav__link');
+
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+
+    // Mobile menu toggle
+    navToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Close mobile menu on link click
+    navLinkItems.forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Active nav link on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const observerNav = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          navLinkItems.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+          });
+        }
+      });
+    }, { rootMargin: '-40% 0px -60% 0px' });
+
+    sections.forEach(section => observerNav.observe(section));
+
+    // Scroll reveal animations
+    const fadeElements = document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right');
+
+    const observerFade = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observerFade.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    fadeElements.forEach(el => observerFade.observe(el));
+  </script>
+</body>
+</html>
