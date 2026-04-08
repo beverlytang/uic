@@ -1,1573 +1,1925 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Universal Industrial Care | Occupational Healthcare in the San Gabriel Valley</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-  <style>
-    /* ── Design Tokens ── */
-    :root {
-      --color-purple: #2F2F69;
-      --color-purple-light: #3d3d80;
-      --color-red: #B8292E;
-      --color-red-hover: #9a2226;
-      --color-blue: #336699;
-      --color-blue-hover: #2a5580;
-      --color-black: #000000;
-      --color-white: #FFFFFF;
-      --color-cream: #F8F6F3;
-      --color-gray-50: #FAFAFA;
-      --color-gray-100: #F5F5F5;
-      --color-gray-200: #E8E8E8;
-      --color-gray-300: #D4D4D4;
-      --color-gray-600: #666666;
-      --color-gray-700: #444444;
-
-      --font-display: 'DM Serif Display', Georgia, serif;
-      --font-body: 'DM Sans', system-ui, sans-serif;
-
-      --space-xs: 0.5rem;
-      --space-sm: 1rem;
-      --space-md: 1.5rem;
-      --space-lg: 2.5rem;
-      --space-xl: 4rem;
-      --space-2xl: 6rem;
-
-      --radius-sm: 4px;
-      --radius-md: 8px;
-      --radius-lg: 12px;
-
-      --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
-      --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
-      --shadow-lg: 0 8px 30px rgba(0,0,0,0.12);
-
-      --max-width: 1200px;
-      --header-height: 72px;
-    }
-
-    /* ── Reset & Base ── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: var(--header-height);
-    }
-
-    body {
-      font-family: var(--font-body);
-      color: var(--color-black);
-      line-height: 1.6;
-      background: var(--color-white);
-      -webkit-font-smoothing: antialiased;
-    }
-
-    img { max-width: 100%; height: auto; display: block; }
-    a { color: var(--color-blue); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-
-    .container {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 0 var(--space-md);
-    }
-
-    /* ── Typography ── */
-    h1, h2, h3, h4 {
-      font-family: var(--font-display);
-      color: var(--color-purple);
-      line-height: 1.2;
-    }
-
-    h2 {
-      font-size: clamp(1.75rem, 4vw, 2.5rem);
-      margin-bottom: var(--space-sm);
-    }
-
-    h3 {
-      font-size: clamp(1.25rem, 2.5vw, 1.5rem);
-      margin-bottom: var(--space-xs);
-    }
-
-    .section-subtitle {
-      color: var(--color-gray-600);
-      font-size: 1.05rem;
-      max-width: 600px;
-      margin-bottom: var(--space-lg);
-    }
-
-    /* ── Scroll Animations ── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .reveal-delay-1 { transition-delay: 0.1s; }
-    .reveal-delay-2 { transition-delay: 0.2s; }
-    .reveal-delay-3 { transition-delay: 0.3s; }
-    .reveal-delay-4 { transition-delay: 0.4s; }
-
-    /* ── Header / Nav ── */
-    .site-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      background: rgba(255,255,255,0.97);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--color-gray-200);
-      height: var(--header-height);
-      transition: box-shadow 0.3s ease;
-    }
-
-    .site-header.scrolled {
-      box-shadow: var(--shadow-md);
-    }
-
-    .header-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 100%;
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 0 var(--space-md);
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: var(--space-xs);
-    }
-
-    .logo img {
-      height: 40px;
-      width: auto;
-    }
-
-    .logo-text {
-      font-family: var(--font-display);
-      color: var(--color-purple);
-      font-size: 1.15rem;
-      line-height: 1.2;
-    }
-
-    .logo-text span {
-      display: block;
-      font-family: var(--font-body);
-      font-size: 0.7rem;
-      color: var(--color-gray-600);
-      font-weight: 500;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-
-    .nav-links {
-      display: flex;
-      list-style: none;
-      gap: var(--space-md);
-      align-items: center;
-    }
-
-    .nav-links a {
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: var(--color-gray-700);
-      text-decoration: none;
-      position: relative;
-      padding: 4px 0;
-      transition: color 0.2s;
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--color-purple);
-      transition: width 0.3s ease;
-    }
-
-    .nav-links a:hover { color: var(--color-purple); text-decoration: none; }
-    .nav-links a:hover::after { width: 100%; }
-
-    .nav-cta {
-      background: var(--color-red) !important;
-      color: var(--color-white) !important;
-      padding: 8px 20px !important;
-      border-radius: var(--radius-sm);
-      font-weight: 600 !important;
-      transition: background 0.2s !important;
-    }
-
-    .nav-cta::after { display: none !important; }
-    .nav-cta:hover { background: var(--color-red-hover) !important; }
-
-    /* Mobile Nav Toggle */
-    .nav-toggle {
-      display: none;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 8px;
-      flex-direction: column;
-      gap: 5px;
-    }
-
-    .nav-toggle span {
-      width: 24px;
-      height: 2px;
-      background: var(--color-purple);
-      transition: all 0.3s ease;
-      display: block;
-    }
-
-    .nav-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-    .nav-toggle.active span:nth-child(2) { opacity: 0; }
-    .nav-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-
-    /* ── Hero ── */
-    .hero {
-      margin-top: var(--header-height);
-      background: linear-gradient(135deg, var(--color-purple) 0%, var(--color-purple-light) 60%, var(--color-blue) 100%);
-      color: var(--color-white);
-      padding: var(--space-2xl) 0;
-      position: relative;
-      overflow: hidden;
-      min-height: 520px;
-      display: flex;
-      align-items: center;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 20% 80%, rgba(255,255,255,0.05) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(184,41,46,0.15) 0%, transparent 40%);
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-xl);
-      align-items: center;
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero h1 {
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      color: var(--color-white);
-      margin-bottom: var(--space-md);
-      line-height: 1.15;
-    }
-
-    .hero p {
-      font-size: 1.1rem;
-      opacity: 0.9;
-      line-height: 1.7;
-      margin-bottom: var(--space-lg);
-      max-width: 520px;
-    }
-
-    .hero-buttons {
-      display: flex;
-      gap: var(--space-sm);
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 28px;
-      border-radius: var(--radius-sm);
-      font-family: var(--font-body);
-      font-size: 0.95rem;
-      font-weight: 600;
-      cursor: pointer;
-      border: none;
-      text-decoration: none;
-      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-    }
-
-    .btn:hover { text-decoration: none; transform: translateY(-1px); }
-    .btn:active { transform: translateY(0); }
-
-    .btn-red {
-      background: var(--color-red);
-      color: var(--color-white);
-    }
-    .btn-red:hover { background: var(--color-red-hover); box-shadow: 0 4px 14px rgba(184,41,46,0.35); }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--color-white);
-      border: 2px solid rgba(255,255,255,0.5);
-    }
-    .btn-outline:hover { border-color: var(--color-white); background: rgba(255,255,255,0.1); }
-
-    .btn-blue {
-      background: var(--color-blue);
-      color: var(--color-white);
-    }
-    .btn-blue:hover { background: var(--color-blue-hover); box-shadow: 0 4px 14px rgba(51,102,153,0.35); }
-
-    .hero-image {
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-    }
-
-    .hero-image img {
-      width: 100%;
-      height: 360px;
-      object-fit: cover;
-    }
-
-    /* ── Stats Bar ── */
-    .stats-bar {
-      background: var(--color-white);
-      padding: var(--space-lg) 0;
-      border-bottom: 1px solid var(--color-gray-200);
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: var(--space-md);
-      text-align: center;
-    }
-
-    .stat-item {
-      padding: var(--space-sm);
-    }
-
-    .stat-number {
-      font-family: var(--font-display);
-      font-size: clamp(1.75rem, 3vw, 2.5rem);
-      color: var(--color-purple);
-    }
-
-    .stat-label {
-      font-size: 0.85rem;
-      color: var(--color-gray-600);
-      margin-top: 4px;
-      font-weight: 500;
-    }
-
-    /* ── Sections ── */
-    section {
-      padding: var(--space-2xl) 0;
-    }
-
-    .section-cream { background: var(--color-cream); }
-    .section-white { background: var(--color-white); }
-    .section-dark {
-      background: var(--color-purple);
-      color: var(--color-white);
-    }
-    .section-dark h2, .section-dark h3 { color: var(--color-white); }
-    .section-dark .section-subtitle { color: rgba(255,255,255,0.7); }
-
-    /* ── About ── */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-xl);
-      align-items: center;
-    }
-
-    .about-image {
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      box-shadow: var(--shadow-lg);
-    }
-
-    .about-image img {
-      width: 100%;
-      height: 400px;
-      object-fit: cover;
-    }
-
-    .about-text p {
-      margin-bottom: var(--space-sm);
-      color: var(--color-gray-700);
-    }
-
-    .about-features {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-sm);
-      margin-top: var(--space-md);
-    }
-
-    .about-feature {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-    }
-
-    .about-feature-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: rgba(47,47,105,0.08);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      font-size: 1rem;
-    }
-
-    .about-feature-text {
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: var(--color-gray-700);
-    }
-
-    /* ── Services ── */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: var(--space-md);
-    }
-
-    .service-card {
-      background: var(--color-white);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      box-shadow: var(--shadow-sm);
-      border: 1px solid var(--color-gray-200);
-      transition: box-shadow 0.3s, transform 0.3s;
-    }
-
-    .service-card:hover {
-      box-shadow: var(--shadow-lg);
-      transform: translateY(-4px);
-    }
-
-    .service-card-image {
-      height: 180px;
-      overflow: hidden;
-    }
-
-    .service-card-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-
-    .service-card:hover .service-card-image img {
-      transform: scale(1.05);
-    }
-
-    .service-card-body {
-      padding: var(--space-md);
-    }
-
-    .service-card h3 {
-      font-size: 1.15rem;
-    }
-
-    .service-card p {
-      font-size: 0.9rem;
-      color: var(--color-gray-600);
-      margin-bottom: var(--space-sm);
-    }
-
-    /* Expandable Sections */
-    .expandable {
-      border: 1px solid var(--color-gray-200);
-      border-radius: var(--radius-md);
-      margin-bottom: var(--space-sm);
-      background: var(--color-white);
-      overflow: hidden;
-    }
-
-    .expandable-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: var(--space-sm) var(--space-md);
-      cursor: pointer;
-      background: none;
-      border: none;
-      width: 100%;
-      text-align: left;
-      font-family: var(--font-body);
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--color-purple);
-      transition: background 0.2s;
-    }
-
-    .expandable-header:hover {
-      background: var(--color-gray-50);
-    }
-
-    .expandable-header:focus-visible {
-      outline: 2px solid var(--color-blue);
-      outline-offset: -2px;
-    }
-
-    .expand-icon {
-      width: 24px;
-      height: 24px;
-      position: relative;
-      flex-shrink: 0;
-    }
-
-    .expand-icon::before,
-    .expand-icon::after {
-      content: '';
-      position: absolute;
-      background: var(--color-purple);
-      transition: transform 0.3s ease;
-    }
-
-    .expand-icon::before {
-      top: 50%;
-      left: 4px;
-      right: 4px;
-      height: 2px;
-      transform: translateY(-50%);
-    }
-
-    .expand-icon::after {
-      left: 50%;
-      top: 4px;
-      bottom: 4px;
-      width: 2px;
-      transform: translateX(-50%);
-    }
-
-    .expandable.open .expand-icon::after {
-      transform: translateX(-50%) rotate(90deg);
-      opacity: 0;
-    }
-
-    .expandable-content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease;
-    }
-
-    .expandable-content-inner {
-      padding: 0 var(--space-md) var(--space-md);
-      font-size: 0.9rem;
-      color: var(--color-gray-700);
-      line-height: 1.7;
-    }
-
-    .expandable-content-inner ul {
-      padding-left: var(--space-md);
-      margin-top: var(--space-xs);
-    }
-
-    .expandable-content-inner li {
-      margin-bottom: 4px;
-    }
-
-    /* ── Providers ── */
-    .providers-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: var(--space-lg);
-    }
-
-    .provider-card {
-      display: flex;
-      gap: var(--space-md);
-      align-items: flex-start;
-    }
-
-    .provider-photo {
-      width: 160px;
-      height: 200px;
-      border-radius: var(--radius-md);
-      overflow: hidden;
-      flex-shrink: 0;
-      box-shadow: var(--shadow-md);
-    }
-
-    .provider-photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .provider-info h3 {
-      color: var(--color-white);
-      margin-bottom: 4px;
-    }
-
-    .provider-title {
-      color: rgba(255,255,255,0.7);
-      font-size: 0.9rem;
-      font-weight: 500;
-      margin-bottom: var(--space-sm);
-    }
-
-    .provider-bio {
-      font-size: 0.9rem;
-      color: rgba(255,255,255,0.8);
-      line-height: 1.6;
-    }
-
-    /* ── Transportation ── */
-    .transport-section {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-xl);
-      align-items: center;
-    }
-
-    .transport-image {
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      box-shadow: var(--shadow-lg);
-    }
-
-    .transport-image img {
-      width: 100%;
-      height: 320px;
-      object-fit: cover;
-    }
-
-    .community-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: var(--space-sm);
-    }
-
-    .community-tag {
-      background: rgba(47,47,105,0.08);
-      color: var(--color-purple);
-      padding: 4px 14px;
-      border-radius: 20px;
-      font-size: 0.82rem;
-      font-weight: 500;
-    }
-
-    /* ── Location ── */
-    .location-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-xl);
-      align-items: start;
-    }
-
-    .map-wrapper {
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      box-shadow: var(--shadow-lg);
-      height: 400px;
-    }
-
-    .map-wrapper iframe {
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-
-    .location-details {
-      padding: var(--space-md) 0;
-    }
-
-    .location-clinic-photo {
-      border-radius: var(--radius-md);
-      overflow: hidden;
-      margin-bottom: var(--space-md);
-      box-shadow: var(--shadow-md);
-    }
-
-    .location-clinic-photo img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-    }
-
-    .location-info-item {
-      display: flex;
-      gap: 12px;
-      margin-bottom: var(--space-sm);
-      align-items: flex-start;
-    }
-
-    .location-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: rgba(47,47,105,0.08);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      font-size: 1.1rem;
-    }
-
-    .location-info-item strong {
-      display: block;
-      font-size: 0.85rem;
-      color: var(--color-purple);
-      margin-bottom: 2px;
-    }
-
-    .location-info-item span,
-    .location-info-item a {
-      font-size: 0.9rem;
-      color: var(--color-gray-700);
-    }
-
-    /* ── Contact Form ── */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-xl);
-      align-items: start;
-    }
-
-    .contact-info-cards {
-      display: grid;
-      gap: var(--space-sm);
-    }
-
-    .contact-info-card {
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: var(--radius-md);
-      padding: var(--space-md);
-    }
-
-    .contact-info-card h4 {
-      color: var(--color-white);
-      font-family: var(--font-body);
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 8px;
-      opacity: 0.7;
-    }
-
-    .contact-info-card p,
-    .contact-info-card a {
-      color: var(--color-white);
-      font-size: 1rem;
-    }
-
-    .contact-info-card a:hover {
-      color: rgba(255,255,255,0.8);
-    }
-
-    .contact-form {
-      background: var(--color-white);
-      border-radius: var(--radius-lg);
-      padding: var(--space-lg);
-      box-shadow: var(--shadow-lg);
-    }
-
-    .contact-form h3 {
-      color: var(--color-purple);
-      margin-bottom: var(--space-md);
-    }
-
-    .form-group {
-      margin-bottom: var(--space-sm);
-    }
-
-    .form-group label {
-      display: block;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--color-gray-700);
-      margin-bottom: 4px;
-    }
-
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      width: 100%;
-      padding: 10px 14px;
-      border: 1px solid var(--color-gray-300);
-      border-radius: var(--radius-sm);
-      font-family: var(--font-body);
-      font-size: 0.95rem;
-      color: var(--color-black);
-      background: var(--color-white);
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      outline: none;
-      border-color: var(--color-blue);
-      box-shadow: 0 0 0 3px rgba(51,102,153,0.15);
-    }
-
-    .form-group textarea {
-      resize: vertical;
-      min-height: 100px;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-sm);
-    }
-
-    .contact-form .btn-red {
-      width: 100%;
-      justify-content: center;
-      padding: 14px;
-      font-size: 1rem;
-      margin-top: var(--space-xs);
-    }
-
-    /* ── Footer ── */
-    .site-footer {
-      background: #1a1a3e;
-      color: rgba(255,255,255,0.6);
-      padding: var(--space-lg) 0 var(--space-md);
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: var(--space-xl);
-      margin-bottom: var(--space-lg);
-    }
-
-    .footer-brand .logo-text {
-      color: var(--color-white);
-      font-size: 1.1rem;
-      margin-bottom: var(--space-xs);
-    }
-
-    .footer-brand p {
-      font-size: 0.85rem;
-      line-height: 1.6;
-      max-width: 320px;
-    }
-
-    .footer-col h4 {
-      color: var(--color-white);
-      font-family: var(--font-body);
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: var(--space-sm);
-    }
-
-    .footer-col ul { list-style: none; }
-
-    .footer-col li { margin-bottom: 8px; }
-
-    .footer-col a {
-      color: rgba(255,255,255,0.6);
-      font-size: 0.9rem;
-      transition: color 0.2s;
-    }
-
-    .footer-col a:hover { color: var(--color-white); text-decoration: none; }
-
-    .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,0.1);
-      padding-top: var(--space-md);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.8rem;
-    }
-
-    .footer-languages {
-      display: flex;
-      gap: var(--space-sm);
-      font-size: 0.8rem;
-    }
-
-    /* ── Team photo ── */
-    .team-photo {
-      margin-top: var(--space-lg);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      box-shadow: var(--shadow-lg);
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .team-photo img {
-      width: 100%;
-      object-fit: cover;
-    }
-
-    .team-caption {
-      text-align: center;
-      margin-top: var(--space-sm);
-      color: rgba(255,255,255,0.6);
-      font-size: 0.9rem;
-      font-style: italic;
-    }
-
-    /* ── Skip Link ── */
-    .skip-link {
-      position: absolute;
-      top: -100%;
-      left: var(--space-sm);
-      background: var(--color-purple);
-      color: var(--color-white);
-      padding: 8px 16px;
-      border-radius: var(--radius-sm);
-      z-index: 9999;
-      font-weight: 600;
-    }
-
-    .skip-link:focus {
-      top: var(--space-xs);
-    }
-
-    /* ── Responsive ── */
-    @media (max-width: 900px) {
-      .hero-grid,
-      .about-grid,
-      .providers-grid,
-      .transport-section,
-      .location-grid,
-      .contact-grid,
-      .footer-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .services-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .hero-image { order: -1; }
-
-      .hero-image img { height: 260px; }
-
-      .provider-card {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      }
-
-      .provider-photo {
-        width: 140px;
-        height: 180px;
-      }
-    }
-
-    @media (max-width: 640px) {
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Universal Industrial Care | Occupational Healthcare in the San Gabriel
+      Valley
+    </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ── Design Tokens ── */
       :root {
-        --space-2xl: 3.5rem;
-        --header-height: 64px;
+        --color-purple: #2f2f69;
+        --color-purple-light: #3d3d80;
+        --color-red: #b8292e;
+        --color-red-hover: #9a2226;
+        --color-blue: #336699;
+        --color-blue-hover: #2a5580;
+        --color-black: #000000;
+        --color-white: #ffffff;
+        --color-cream: #f8f6f3;
+        --color-gray-50: #fafafa;
+        --color-gray-100: #f5f5f5;
+        --color-gray-200: #e8e8e8;
+        --color-gray-300: #d4d4d4;
+        --color-gray-600: #666666;
+        --color-gray-700: #444444;
+
+        --font-display: "DM Serif Display", Georgia, serif;
+        --font-body: "DM Sans", system-ui, sans-serif;
+
+        --space-xs: 0.5rem;
+        --space-sm: 1rem;
+        --space-md: 1.5rem;
+        --space-lg: 2.5rem;
+        --space-xl: 4rem;
+        --space-2xl: 6rem;
+
+        --radius-sm: 4px;
+        --radius-md: 8px;
+        --radius-lg: 12px;
+
+        --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+        --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+        --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.12);
+
+        --max-width: 1200px;
+        --header-height: 72px;
       }
 
-      .nav-links {
-        display: none;
-        position: absolute;
-        top: var(--header-height);
+      /* ── Reset & Base ── */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: var(--header-height);
+      }
+
+      body {
+        font-family: var(--font-body);
+        color: var(--color-black);
+        line-height: 1.6;
+        background: var(--color-white);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+      a {
+        color: var(--color-blue);
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .container {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 0 var(--space-md);
+      }
+
+      /* ── Typography ── */
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: var(--font-display);
+        color: var(--color-purple);
+        line-height: 1.2;
+      }
+
+      h2 {
+        font-size: clamp(1.75rem, 4vw, 2.5rem);
+        margin-bottom: var(--space-sm);
+      }
+
+      h3 {
+        font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+        margin-bottom: var(--space-xs);
+      }
+
+      .section-subtitle {
+        color: var(--color-gray-600);
+        font-size: 1.05rem;
+        max-width: 600px;
+        margin-bottom: var(--space-lg);
+      }
+
+      /* ── Scroll Animations ── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .reveal-delay-1 {
+        transition-delay: 0.1s;
+      }
+      .reveal-delay-2 {
+        transition-delay: 0.2s;
+      }
+      .reveal-delay-3 {
+        transition-delay: 0.3s;
+      }
+      .reveal-delay-4 {
+        transition-delay: 0.4s;
+      }
+
+      /* ── Header / Nav ── */
+      .site-header {
+        position: fixed;
+        top: 0;
         left: 0;
         right: 0;
-        background: var(--color-white);
-        flex-direction: column;
-        padding: var(--space-md);
-        gap: var(--space-sm);
+        z-index: 1000;
+        background: rgba(255, 255, 255, 0.97);
+        backdrop-filter: blur(8px);
         border-bottom: 1px solid var(--color-gray-200);
+        height: var(--header-height);
+        transition: box-shadow 0.3s ease;
+      }
+
+      .site-header.scrolled {
         box-shadow: var(--shadow-md);
       }
 
-      .nav-links.open { display: flex; }
+      .header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 100%;
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 0 var(--space-md);
+      }
 
-      .nav-toggle { display: flex; }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: var(--space-xs);
+      }
 
-      .services-grid {
-        grid-template-columns: 1fr;
+      .logo img {
+        height: 40px;
+        width: auto;
+      }
+
+      .logo-text {
+        font-family: var(--font-display);
+        color: var(--color-purple);
+        font-size: 1.15rem;
+        line-height: 1.2;
+      }
+
+      .logo-text span {
+        display: block;
+        font-family: var(--font-body);
+        font-size: 0.7rem;
+        color: var(--color-gray-600);
+        font-weight: 500;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: var(--space-md);
+        align-items: center;
+      }
+
+      .nav-links a {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--color-gray-700);
+        text-decoration: none;
+        position: relative;
+        padding: 4px 0;
+        transition: color 0.2s;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--color-purple);
+        transition: width 0.3s ease;
+      }
+
+      .nav-links a:hover {
+        color: var(--color-purple);
+        text-decoration: none;
+      }
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      .nav-cta {
+        background: var(--color-red) !important;
+        color: var(--color-white) !important;
+        padding: 8px 20px !important;
+        border-radius: var(--radius-sm);
+        font-weight: 600 !important;
+        transition: background 0.2s !important;
+      }
+
+      .nav-cta::after {
+        display: none !important;
+      }
+      .nav-cta:hover {
+        background: var(--color-red-hover) !important;
+      }
+
+      /* Mobile Nav Toggle */
+      .nav-toggle {
+        display: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 8px;
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      .nav-toggle span {
+        width: 24px;
+        height: 2px;
+        background: var(--color-purple);
+        transition: all 0.3s ease;
+        display: block;
+      }
+
+      .nav-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+      .nav-toggle.active span:nth-child(2) {
+        opacity: 0;
+      }
+      .nav-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+      }
+
+      /* ── Hero ── */
+      .hero {
+        margin-top: var(--header-height);
+        background: linear-gradient(
+          135deg,
+          var(--color-purple) 0%,
+          var(--color-purple-light) 60%,
+          var(--color-blue) 100%
+        );
+        color: var(--color-white);
+        padding: var(--space-2xl) 0;
+        position: relative;
+        overflow: hidden;
+        min-height: 520px;
+        display: flex;
+        align-items: center;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            circle at 20% 80%,
+            rgba(255, 255, 255, 0.05) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 20%,
+            rgba(184, 41, 46, 0.15) 0%,
+            transparent 40%
+          );
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-xl);
+        align-items: center;
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero h1 {
+        font-size: clamp(2rem, 5vw, 3.2rem);
+        color: var(--color-white);
+        margin-bottom: var(--space-md);
+        line-height: 1.15;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+        opacity: 0.9;
+        line-height: 1.7;
+        margin-bottom: var(--space-lg);
+        max-width: 520px;
+      }
+
+      .hero-buttons {
+        display: flex;
+        gap: var(--space-sm);
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 28px;
+        border-radius: var(--radius-sm);
+        font-family: var(--font-body);
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        border: none;
+        text-decoration: none;
+        transition:
+          background 0.2s,
+          transform 0.15s,
+          box-shadow 0.2s;
+      }
+
+      .btn:hover {
+        text-decoration: none;
+        transform: translateY(-1px);
+      }
+      .btn:active {
+        transform: translateY(0);
+      }
+
+      .btn-red {
+        background: var(--color-red);
+        color: var(--color-white);
+      }
+      .btn-red:hover {
+        background: var(--color-red-hover);
+        box-shadow: 0 4px 14px rgba(184, 41, 46, 0.35);
+      }
+
+      .btn-outline {
+        background: transparent;
+        color: var(--color-white);
+        border: 2px solid rgba(255, 255, 255, 0.5);
+      }
+      .btn-outline:hover {
+        border-color: var(--color-white);
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      .btn-blue {
+        background: var(--color-blue);
+        color: var(--color-white);
+      }
+      .btn-blue:hover {
+        background: var(--color-blue-hover);
+        box-shadow: 0 4px 14px rgba(51, 102, 153, 0.35);
+      }
+
+      .hero-image {
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+      }
+
+      .hero-image img {
+        width: 100%;
+        height: 360px;
+        object-fit: cover;
+      }
+
+      /* ── Stats Bar ── */
+      .stats-bar {
+        background: var(--color-white);
+        padding: var(--space-lg) 0;
+        border-bottom: 1px solid var(--color-gray-200);
       }
 
       .stats-grid {
-        grid-template-columns: 1fr 1fr;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--space-md);
+        text-align: center;
       }
 
-      .form-row {
-        grid-template-columns: 1fr;
+      .stat-item {
+        padding: var(--space-sm);
+      }
+
+      .stat-number {
+        font-family: var(--font-display);
+        font-size: clamp(1.75rem, 3vw, 2.5rem);
+        color: var(--color-purple);
+      }
+
+      .stat-label {
+        font-size: 0.85rem;
+        color: var(--color-gray-600);
+        margin-top: 4px;
+        font-weight: 500;
+      }
+
+      /* ── Sections ── */
+      section {
+        padding: var(--space-2xl) 0;
+      }
+
+      .section-cream {
+        background: var(--color-cream);
+      }
+      .section-white {
+        background: var(--color-white);
+      }
+      .section-dark {
+        background: var(--color-purple);
+        color: var(--color-white);
+      }
+      .section-dark h2,
+      .section-dark h3 {
+        color: var(--color-white);
+      }
+      .section-dark .section-subtitle {
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      /* ── About ── */
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-xl);
+        align-items: center;
+      }
+
+      .about-image {
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        box-shadow: var(--shadow-lg);
+      }
+
+      .about-image img {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+      }
+
+      .about-text p {
+        margin-bottom: var(--space-sm);
+        color: var(--color-gray-700);
       }
 
       .about-features {
-        grid-template-columns: 1fr;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-sm);
+        margin-top: var(--space-md);
       }
 
-      .hero { min-height: auto; padding: var(--space-xl) 0; }
-      .hero h1 { font-size: 1.75rem; }
+      .about-feature {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .about-feature-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: rgba(47, 47, 105, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        font-size: 1rem;
+      }
+
+      .about-feature-text {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--color-gray-700);
+      }
+
+      /* ── Services ── */
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-md);
+      }
+
+      .service-card {
+        background: var(--color-white);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        box-shadow: var(--shadow-sm);
+        border: 1px solid var(--color-gray-200);
+        transition:
+          box-shadow 0.3s,
+          transform 0.3s;
+      }
+
+      .service-card:hover {
+        box-shadow: var(--shadow-lg);
+        transform: translateY(-4px);
+      }
+
+      .service-card-image {
+        height: 180px;
+        overflow: hidden;
+      }
+
+      .service-card-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .service-card:hover .service-card-image img {
+        transform: scale(1.05);
+      }
+
+      .service-card-body {
+        padding: var(--space-md);
+      }
+
+      .service-card h3 {
+        font-size: 1.15rem;
+      }
+
+      .service-card p {
+        font-size: 0.9rem;
+        color: var(--color-gray-600);
+        margin-bottom: var(--space-sm);
+      }
+
+      /* Expandable Sections */
+      .expandable {
+        border: 1px solid var(--color-gray-200);
+        border-radius: var(--radius-md);
+        margin-bottom: var(--space-sm);
+        background: var(--color-white);
+        overflow: hidden;
+      }
+
+      .expandable-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: var(--space-sm) var(--space-md);
+        cursor: pointer;
+        background: none;
+        border: none;
+        width: 100%;
+        text-align: left;
+        font-family: var(--font-body);
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--color-purple);
+        transition: background 0.2s;
+      }
+
+      .expandable-header:hover {
+        background: var(--color-gray-50);
+      }
+
+      .expandable-header:focus-visible {
+        outline: 2px solid var(--color-blue);
+        outline-offset: -2px;
+      }
+
+      .expand-icon {
+        width: 24px;
+        height: 24px;
+        position: relative;
+        flex-shrink: 0;
+      }
+
+      .expand-icon::before,
+      .expand-icon::after {
+        content: "";
+        position: absolute;
+        background: var(--color-purple);
+        transition: transform 0.3s ease;
+      }
+
+      .expand-icon::before {
+        top: 50%;
+        left: 4px;
+        right: 4px;
+        height: 2px;
+        transform: translateY(-50%);
+      }
+
+      .expand-icon::after {
+        left: 50%;
+        top: 4px;
+        bottom: 4px;
+        width: 2px;
+        transform: translateX(-50%);
+      }
+
+      .expandable.open .expand-icon::after {
+        transform: translateX(-50%) rotate(90deg);
+        opacity: 0;
+      }
+
+      .expandable-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+      }
+
+      .expandable-content-inner {
+        padding: 0 var(--space-md) var(--space-md);
+        font-size: 0.9rem;
+        color: var(--color-gray-700);
+        line-height: 1.7;
+      }
+
+      .expandable-content-inner ul {
+        padding-left: var(--space-md);
+        margin-top: var(--space-xs);
+      }
+
+      .expandable-content-inner li {
+        margin-bottom: 4px;
+      }
+
+      /* ── Providers ── */
+      .providers-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-lg);
+      }
+
+      .provider-card {
+        display: flex;
+        gap: var(--space-md);
+        align-items: flex-start;
+      }
+
+      .provider-photo {
+        width: 160px;
+        height: 200px;
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        flex-shrink: 0;
+        box-shadow: var(--shadow-md);
+      }
+
+      .provider-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .provider-info h3 {
+        color: var(--color-white);
+        margin-bottom: 4px;
+      }
+
+      .provider-title {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.9rem;
+        font-weight: 500;
+        margin-bottom: var(--space-sm);
+      }
+
+      .provider-bio {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.6;
+      }
+
+      /* ── Transportation ── */
+      .transport-section {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-xl);
+        align-items: center;
+      }
+
+      .transport-image {
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        box-shadow: var(--shadow-lg);
+      }
+
+      .transport-image img {
+        width: 100%;
+        height: 320px;
+        object-fit: cover;
+      }
+
+      .community-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: var(--space-sm);
+      }
+
+      .community-tag {
+        background: rgba(47, 47, 105, 0.08);
+        color: var(--color-purple);
+        padding: 4px 14px;
+        border-radius: 20px;
+        font-size: 0.82rem;
+        font-weight: 500;
+      }
+
+      /* ── Location ── */
+      .location-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-xl);
+        align-items: start;
+      }
+
+      .map-wrapper {
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        box-shadow: var(--shadow-lg);
+        height: 400px;
+      }
+
+      .map-wrapper iframe {
+        width: 100%;
+        height: 100%;
+        border: 0;
+      }
+
+      .location-details {
+        padding: var(--space-md) 0;
+      }
+
+      .location-clinic-photo {
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        margin-bottom: var(--space-md);
+        box-shadow: var(--shadow-md);
+      }
+
+      .location-clinic-photo img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+      }
+
+      .location-info-item {
+        display: flex;
+        gap: 12px;
+        margin-bottom: var(--space-sm);
+        align-items: flex-start;
+      }
+
+      .location-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(47, 47, 105, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        font-size: 1.1rem;
+      }
+
+      .location-info-item strong {
+        display: block;
+        font-size: 0.85rem;
+        color: var(--color-purple);
+        margin-bottom: 2px;
+      }
+
+      .location-info-item span,
+      .location-info-item a {
+        font-size: 0.9rem;
+        color: var(--color-gray-700);
+      }
+
+      /* ── Contact Form ── */
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-xl);
+        align-items: start;
+      }
+
+      .contact-info-cards {
+        display: grid;
+        gap: var(--space-sm);
+      }
+
+      .contact-info-card {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: var(--radius-md);
+        padding: var(--space-md);
+      }
+
+      .contact-info-card h4 {
+        color: var(--color-white);
+        font-family: var(--font-body);
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 8px;
+        opacity: 0.7;
+      }
+
+      .contact-info-card p,
+      .contact-info-card a {
+        color: var(--color-white);
+        font-size: 1rem;
+      }
+
+      .contact-info-card a:hover {
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .contact-form {
+        background: var(--color-white);
+        border-radius: var(--radius-lg);
+        padding: var(--space-lg);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .contact-form h3 {
+        color: var(--color-purple);
+        margin-bottom: var(--space-md);
+      }
+
+      .form-group {
+        margin-bottom: var(--space-sm);
+      }
+
+      .form-group label {
+        display: block;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--color-gray-700);
+        margin-bottom: 4px;
+      }
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        width: 100%;
+        padding: 10px 14px;
+        border: 1px solid var(--color-gray-300);
+        border-radius: var(--radius-sm);
+        font-family: var(--font-body);
+        font-size: 0.95rem;
+        color: var(--color-black);
+        background: var(--color-white);
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+      }
+
+      .form-group input:focus,
+      .form-group select:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: var(--color-blue);
+        box-shadow: 0 0 0 3px rgba(51, 102, 153, 0.15);
+      }
+
+      .form-group textarea {
+        resize: vertical;
+        min-height: 100px;
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-sm);
+      }
+
+      .contact-form .btn-red {
+        width: 100%;
+        justify-content: center;
+        padding: 14px;
+        font-size: 1rem;
+        margin-top: var(--space-xs);
+      }
+
+      /* ── Footer ── */
+      .site-footer {
+        background: #1a1a3e;
+        color: rgba(255, 255, 255, 0.6);
+        padding: var(--space-lg) 0 var(--space-md);
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: var(--space-xl);
+        margin-bottom: var(--space-lg);
+      }
+
+      .footer-brand .logo-text {
+        color: var(--color-white);
+        font-size: 1.1rem;
+        margin-bottom: var(--space-xs);
+      }
+
+      .footer-brand p {
+        font-size: 0.85rem;
+        line-height: 1.6;
+        max-width: 320px;
+      }
+
+      .footer-col h4 {
+        color: var(--color-white);
+        font-family: var(--font-body);
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: var(--space-sm);
+      }
+
+      .footer-col ul {
+        list-style: none;
+      }
+
+      .footer-col li {
+        margin-bottom: 8px;
+      }
+
+      .footer-col a {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.9rem;
+        transition: color 0.2s;
+      }
+
+      .footer-col a:hover {
+        color: var(--color-white);
+        text-decoration: none;
+      }
 
       .footer-bottom {
-        flex-direction: column;
-        gap: var(--space-xs);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: var(--space-md);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.8rem;
+      }
+
+      .footer-languages {
+        display: flex;
+        gap: var(--space-sm);
+        font-size: 0.8rem;
+      }
+
+      /* ── Team photo ── */
+      .team-photo {
+        margin-top: var(--space-lg);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        box-shadow: var(--shadow-lg);
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .team-photo img {
+        width: 100%;
+        object-fit: cover;
+      }
+
+      .team-caption {
         text-align: center;
+        margin-top: var(--space-sm);
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.9rem;
+        font-style: italic;
       }
-    }
-  </style>
-</head>
-<body>
 
-<a href="#main" class="skip-link">Skip to main content</a>
+      /* ── Skip Link ── */
+      .skip-link {
+        position: absolute;
+        top: -100%;
+        left: var(--space-sm);
+        background: var(--color-purple);
+        color: var(--color-white);
+        padding: 8px 16px;
+        border-radius: var(--radius-sm);
+        z-index: 9999;
+        font-weight: 600;
+      }
 
-<!-- ── Header ── -->
-<header class="site-header" role="banner">
-  <div class="header-inner">
-    <a href="#" class="logo" aria-label="Universal Industrial Care - Home">
-      <img src="images/uic_logo.gif" alt="UIC Logo" width="40" height="40">
-      <div class="logo-text">
-        Universal Industrial Care
-        <span>Occupational Healthcare</span>
-      </div>
-    </a>
-    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-    <nav aria-label="Main navigation">
-      <ul class="nav-links" role="list">
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#providers">Providers</a></li>
-        <li><a href="#transportation">Transportation</a></li>
-        <li><a href="#location">Location</a></li>
-        <li><a href="#contact" class="nav-cta">Contact Us</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+      .skip-link:focus {
+        top: var(--space-xs);
+      }
 
-<!-- ── Hero ── -->
-<main id="main">
-<section class="hero" aria-label="Welcome">
-  <div class="container">
-    <div class="hero-grid">
-      <div>
-        <h1 class="reveal">Quality Occupational Healthcare for the San&nbsp;Gabriel&nbsp;Valley</h1>
-        <p class="reveal reveal-delay-1">Providing comprehensive occupational healthcare services with superb medical care and open communication with employers since 1999.</p>
-        <div class="hero-buttons reveal reveal-delay-2">
-          <a href="#contact" class="btn btn-red">Schedule a Visit</a>
-          <a href="#services" class="btn btn-outline">Our Services</a>
-        </div>
-      </div>
-      <div class="hero-image reveal reveal-delay-2">
-        <img src="images/clinic_4r.jpg" alt="Medical professional assisting a patient at Universal Industrial Care">
-      </div>
-    </div>
-  </div>
-</section>
+      /* ── Responsive ── */
+      @media (max-width: 900px) {
+        .hero-grid,
+        .about-grid,
+        .providers-grid,
+        .transport-section,
+        .location-grid,
+        .contact-grid,
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
 
-<!-- ── Stats ── -->
-<div class="stats-bar" aria-label="Key statistics">
-  <div class="container">
-    <div class="stats-grid">
-      <div class="stat-item reveal">
-        <div class="stat-number">85%</div>
-        <div class="stat-label">Patients Return to Work</div>
-      </div>
-      <div class="stat-item reveal reveal-delay-1">
-        <div class="stat-number">25+</div>
-        <div class="stat-label">Years of Experience</div>
-      </div>
-      <div class="stat-item reveal reveal-delay-2">
-        <div class="stat-number">5</div>
-        <div class="stat-label">Exam Rooms &amp; Trauma Center</div>
-      </div>
-      <div class="stat-item reveal reveal-delay-3">
-        <div class="stat-number">15+</div>
-        <div class="stat-label">Communities Served</div>
-      </div>
-    </div>
-  </div>
-</div>
+        .services-grid {
+          grid-template-columns: 1fr 1fr;
+        }
 
-<!-- ── About ── -->
-<section id="about" class="section-white" aria-labelledby="about-heading">
-  <div class="container">
-    <div class="about-grid">
-      <div class="about-image reveal">
-        <img src="images/services_1.jpg" alt="Healthcare professional taking a patient's blood pressure">
-      </div>
-      <div class="about-text">
-        <h2 id="about-heading" class="reveal">Who We Are</h2>
-        <p class="reveal reveal-delay-1">Universal Industrial Care, located in the heart of the San Gabriel Valley, is a leader in providing occupational healthcare services for cost- and quality-conscious employers in our geographic region.</p>
-        <p class="reveal reveal-delay-2">Our philosophy is simple: to provide our patients with superb medical care while keeping an open line of communication with each of our employer clients. We maintain a policy to keep employers promptly informed about injured employees' medical status and ensure our medical professionals are always available to respond to inquiries.</p>
-        <p class="reveal reveal-delay-2">Our state-of-the-art facility, opened in August 1999, has five exam rooms, a trauma room, X-ray department, and separate areas for drug screenings.</p>
-        <div class="about-features reveal reveal-delay-3">
-          <div class="about-feature">
-            <div class="about-feature-icon" aria-hidden="true">&#9734;</div>
-            <div class="about-feature-text">State-of-the-art facility</div>
+        .stats-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .hero-image {
+          order: -1;
+        }
+
+        .hero-image img {
+          height: 260px;
+        }
+
+        .provider-card {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+
+        .provider-photo {
+          width: 140px;
+          height: 180px;
+        }
+      }
+
+      @media (max-width: 640px) {
+        :root {
+          --space-2xl: 3.5rem;
+          --header-height: 64px;
+        }
+
+        .nav-links {
+          display: none;
+          position: absolute;
+          top: var(--header-height);
+          left: 0;
+          right: 0;
+          background: var(--color-white);
+          flex-direction: column;
+          padding: var(--space-md);
+          gap: var(--space-sm);
+          border-bottom: 1px solid var(--color-gray-200);
+          box-shadow: var(--shadow-md);
+        }
+
+        .nav-links.open {
+          display: flex;
+        }
+
+        .nav-toggle {
+          display: flex;
+        }
+
+        .services-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .stats-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+
+        .about-features {
+          grid-template-columns: 1fr;
+        }
+
+        .hero {
+          min-height: auto;
+          padding: var(--space-xl) 0;
+        }
+        .hero h1 {
+          font-size: 1.75rem;
+        }
+
+        .footer-bottom {
+          flex-direction: column;
+          gap: var(--space-xs);
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a href="#main" class="skip-link">Skip to main content</a>
+
+    <!-- ── Header ── -->
+    <header class="site-header" role="banner">
+      <div class="header-inner">
+        <a href="#" class="logo" aria-label="Universal Industrial Care - Home">
+          <img
+            src="images/uic_logo.gif"
+            alt="UIC Logo"
+            width="40"
+            height="40"
+          />
+          <div class="logo-text">
+            Universal Industrial Care
+            <span>Occupational Healthcare</span>
           </div>
-          <div class="about-feature">
-            <div class="about-feature-icon" aria-hidden="true">&#9736;</div>
-            <div class="about-feature-text">X-ray department</div>
-          </div>
-          <div class="about-feature">
-            <div class="about-feature-icon" aria-hidden="true">&#9735;</div>
-            <div class="about-feature-text">Multilingual staff</div>
-          </div>
-          <div class="about-feature">
-            <div class="about-feature-icon" aria-hidden="true">&#9733;</div>
-            <div class="about-feature-text">Open employer communication</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── Services ── -->
-<section id="services" class="section-cream" aria-labelledby="services-heading">
-  <div class="container">
-    <h2 id="services-heading" class="reveal">Our Services</h2>
-    <p class="section-subtitle reveal reveal-delay-1">Comprehensive occupational health and workplace services centered around employee wellness and injury recovery.</p>
-
-    <div class="services-grid">
-      <div class="service-card reveal">
-        <div class="service-card-image">
-          <img src="images/services_2.jpg" alt="Physical therapy and patient examination">
-        </div>
-        <div class="service-card-body">
-          <h3>Work Transition Program</h3>
-          <p>Our flagship program focuses on modified duty and return-to-work initiatives with an 85% success rate. The structured 60-day program emphasizes gradual work reintegration.</p>
-        </div>
-      </div>
-      <div class="service-card reveal reveal-delay-1">
-        <div class="service-card-image">
-          <img src="images/services_3.jpg" alt="Medical examination and consultation">
-        </div>
-        <div class="service-card-body">
-          <h3>Occupational Physicals</h3>
-          <p>Pre-employment, DOT, annual, and return-to-work examinations plus specialized testing including vision, audiometry, spirometry, and EKG.</p>
-        </div>
-      </div>
-      <div class="service-card reveal reveal-delay-2">
-        <div class="service-card-image">
-          <img src="images/services_1.jpg" alt="Clinical health screening">
-        </div>
-        <div class="service-card-body">
-          <h3>Drug &amp; Alcohol Screening</h3>
-          <p>Certified MRO services with legal chain-of-custody procedures, NIDA and non-NIDA drug screens, and DOT-compliant breath alcohol testing.</p>
-        </div>
-      </div>
-    </div>
-
-    <div style="margin-top: var(--space-lg);">
-      <h3 class="reveal" style="margin-bottom: var(--space-md);">More Services</h3>
-
-      <div class="expandable reveal">
-        <button class="expandable-header" aria-expanded="false">
-          <span>On-Site Physical Therapy</span>
-          <span class="expand-icon" aria-hidden="true"></span>
-        </button>
-        <div class="expandable-content" role="region">
-          <div class="expandable-content-inner">
-            A complete physical therapy facility operates at our location, providing patients with convenient access to rehabilitation services without the need for offsite referrals. Our therapists work closely with our physicians to create customized recovery plans.
-          </div>
-        </div>
-      </div>
-
-      <div class="expandable reveal reveal-delay-1">
-        <button class="expandable-header" aria-expanded="false">
-          <span>Specialist Referrals</span>
-          <span class="expand-icon" aria-hidden="true"></span>
-        </button>
-        <div class="expandable-content" role="region">
-          <div class="expandable-content-inner">
-            We maintain relationships with medical professionals across multiple disciplines to ensure comprehensive care:
-            <ul>
-              <li>General Surgery</li>
-              <li>Internal Medicine</li>
-              <li>Neurology</li>
-              <li>Obstetrics &amp; Gynecology</li>
-              <li>Ophthalmology</li>
-              <li>Orthopedics</li>
-              <li>Physical &amp; Medical Rehabilitation</li>
-              <li>Podiatry</li>
-              <li>Reconstructive Surgery</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="expandable reveal reveal-delay-2">
-        <button class="expandable-header" aria-expanded="false">
-          <span>Occupational Examination Details</span>
-          <span class="expand-icon" aria-hidden="true"></span>
-        </button>
-        <div class="expandable-content" role="region">
-          <div class="expandable-content-inner">
-            Our occupational physicals include a wide range of assessments:
-            <ul>
-              <li>Pre-employment examinations</li>
-              <li>Basic physical examinations</li>
-              <li>DOT examinations</li>
-              <li>Annual examinations</li>
-              <li>Return-to-work examinations</li>
-              <li>Vision evaluations</li>
-              <li>Audiometry (hearing tests)</li>
-              <li>Spirometry (lung function tests)</li>
-              <li>EKG (heart monitoring)</li>
-              <li>Respiratory fit testing</li>
-              <li>Asbestos-related X-rays</li>
-              <li>Carpal tunnel assessments</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── Providers ── -->
-<section id="providers" class="section-dark" aria-labelledby="providers-heading">
-  <div class="container">
-    <h2 id="providers-heading" class="reveal">Our Providers</h2>
-    <p class="section-subtitle reveal reveal-delay-1">Experienced physicians dedicated to occupational health and injury recovery.</p>
-
-    <div class="providers-grid">
-      <div class="provider-card reveal">
-        <div class="provider-photo">
-          <img src="images/OTuazon.jpg" alt="Dr. Oscar Tuazon examining an X-ray">
-        </div>
-        <div class="provider-info">
-          <h3>Oscar Tuazon, M.D.</h3>
-          <div class="provider-title">Medical Director</div>
-          <p class="provider-bio">Known affectionately by his clients as "Dr. T," Dr. Tuazon ensures that all of his patients receive proper, quality care while maintaining excellent communication with their employers. He has devoted nearly 20 years to industrial medicine, making him a trusted leader in occupational healthcare.</p>
-        </div>
-      </div>
-
-      <div class="provider-card reveal reveal-delay-1">
-        <div class="provider-photo">
-          <img src="images/Leon.jpg" alt="Dr. Billy Leon in clinic">
-        </div>
-        <div class="provider-info">
-          <h3>Billy Leon, M.D.</h3>
-          <div class="provider-title">Orthopedic Surgeon</div>
-          <p class="provider-bio">Certified by the American Board of Orthopedic Surgery, Dr. Leon has been practicing general and orthopedic surgery since 1977. He is a member of the American Academy of Orthopedic Surgeons and the California Orthopedic Association, with staff privileges at multiple area hospitals.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="team-photo reveal">
-      <img src="images/Group-2004-03-17.jpg" alt="The Universal Industrial Care team">
-    </div>
-    <p class="team-caption reveal reveal-delay-1">Our dedicated, friendly staff is committed to providing excellent service &mdash; with multilingual support in Spanish and Tagalog.</p>
-  </div>
-</section>
-
-<!-- ── Transportation ── -->
-<section id="transportation" class="section-white" aria-labelledby="transport-heading">
-  <div class="container">
-    <div class="transport-section">
-      <div>
-        <h2 id="transport-heading" class="reveal">Free Transportation</h2>
-        <p class="section-subtitle reveal reveal-delay-1">Complimentary round-trip transportation for initial clinic visits across 15 surrounding communities.</p>
-        <p class="reveal reveal-delay-2" style="color: var(--color-gray-700); margin-bottom: var(--space-sm);">We understand that getting to your appointment shouldn't be a barrier to receiving quality care. That's why we offer free transportation services to and from our clinic for your first visit.</p>
-        <div class="community-tags reveal reveal-delay-3">
-          <span class="community-tag">Baldwin Park</span>
-          <span class="community-tag">Covina</span>
-          <span class="community-tag">West Covina</span>
-          <span class="community-tag">El Monte</span>
-          <span class="community-tag">Hacienda Heights</span>
-          <span class="community-tag">La Puente</span>
-          <span class="community-tag">Azusa</span>
-          <span class="community-tag">Glendora</span>
-          <span class="community-tag">Irwindale</span>
-          <span class="community-tag">Duarte</span>
-          <span class="community-tag">Monrovia</span>
-          <span class="community-tag">Arcadia</span>
-          <span class="community-tag">Pomona</span>
-          <span class="community-tag">Diamond Bar</span>
-          <span class="community-tag">Rowland Heights</span>
-        </div>
-      </div>
-      <div class="transport-image reveal reveal-delay-2">
-        <img src="images/transport.jpg" alt="UIC complimentary transportation van with the phone number 626-336-6652">
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── Location ── -->
-<section id="location" class="section-cream" aria-labelledby="location-heading">
-  <div class="container">
-    <h2 id="location-heading" class="reveal">Our Location</h2>
-    <p class="section-subtitle reveal reveal-delay-1">Conveniently located in the heart of the San Gabriel Valley.</p>
-
-    <div class="location-grid">
-      <div class="map-wrapper reveal">
-        <iframe
-          title="Universal Industrial Care location map"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3303.8!2d-117.9273!3d34.0295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2d4f7b1e1a7a1%3A0x1234567890abcdef!2s16025+E+Gale+Ave+%23B10%2C+City+of+Industry%2C+CA+91745!5e0!3m2!1sen!2sus!4v1700000000000"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          allowfullscreen>
-        </iframe>
-      </div>
-      <div class="location-details">
-        <div class="location-clinic-photo reveal">
-          <img src="clinic.jpg" alt="Universal Industrial Care clinic exterior">
-        </div>
-
-        <div class="location-info-item reveal reveal-delay-1">
-          <div class="location-icon" aria-hidden="true">&#9872;</div>
-          <div>
-            <strong>Address</strong>
-            <span>16025 E. Gale Ave. Ste. B10<br>City of Industry, CA 91745</span>
-          </div>
-        </div>
-
-        <div class="location-info-item reveal reveal-delay-2">
-          <div class="location-icon" aria-hidden="true">&#9742;</div>
-          <div>
-            <strong>Phone</strong>
-            <a href="tel:+16263366652">(626) 336-6652</a>
-          </div>
-        </div>
-
-        <div class="location-info-item reveal reveal-delay-3">
-          <div class="location-icon" aria-hidden="true">&#9993;</div>
-          <div>
-            <strong>Fax</strong>
-            <span>(626) 336-6552</span>
-          </div>
-        </div>
-
-        <a href="https://www.google.com/maps/dir//16025+E+Gale+Ave+%23B10,+City+of+Industry,+CA+91745" target="_blank" rel="noopener noreferrer" class="btn btn-blue" style="margin-top: var(--space-sm);">
-          Get Directions &#8599;
         </a>
+        <button
+          class="nav-toggle"
+          aria-label="Toggle navigation"
+          aria-expanded="false"
+        >
+          <span></span><span></span><span></span>
+        </button>
+        <nav aria-label="Main navigation">
+          <ul class="nav-links" role="list">
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#providers">Providers</a></li>
+            <li><a href="#transportation">Transportation</a></li>
+            <li><a href="#location">Location</a></li>
+            <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+          </ul>
+        </nav>
       </div>
-    </div>
-  </div>
-</section>
+    </header>
 
-<!-- ── Contact ── -->
-<section id="contact" class="section-dark" aria-labelledby="contact-heading">
-  <div class="container">
-    <h2 id="contact-heading" class="reveal">Contact Us</h2>
-    <p class="section-subtitle reveal reveal-delay-1">Get in touch with our team. We're here to help.</p>
-
-    <div class="contact-grid">
-      <div class="contact-info-cards">
-        <div class="contact-info-card reveal">
-          <h4>General Inquiries</h4>
-          <p><a href="mailto:info@uicmedcenter.com">info@uicmedcenter.com</a></p>
-          <p><a href="tel:+16263366652">(626) 336-6652</a></p>
-        </div>
-        <div class="contact-info-card reveal reveal-delay-1">
-          <h4>Medical Director</h4>
-          <p>Oscar C. Tuazon, M.D.</p>
-          <p><a href="mailto:otuazon@uicmedcenter.com">otuazon@uicmedcenter.com</a></p>
-        </div>
-        <div class="contact-info-card reveal reveal-delay-2">
-          <h4>Employer Screenings</h4>
-          <p>Bryant Reyes</p>
-          <p><a href="mailto:screenings@uicmedcenter.com">screenings@uicmedcenter.com</a></p>
-        </div>
-        <div class="contact-info-card reveal reveal-delay-3">
-          <h4>Billing &amp; Collections</h4>
-          <p><a href="mailto:billing@uicmedcenter.com">billing@uicmedcenter.com</a></p>
-        </div>
-        <div class="contact-info-card reveal reveal-delay-4">
-          <h4>Physician Referrals</h4>
-          <p>Veronica Luna</p>
-          <p><a href="mailto:vluna@uicmedcenter.com">vluna@uicmedcenter.com</a></p>
-        </div>
-      </div>
-
-      <form class="contact-form reveal reveal-delay-1" action="#" method="post" novalidate>
-        <h3>Send Us a Message</h3>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="first-name">First Name <span aria-hidden="true">*</span></label>
-            <input type="text" id="first-name" name="first-name" required autocomplete="given-name">
-          </div>
-          <div class="form-group">
-            <label for="last-name">Last Name <span aria-hidden="true">*</span></label>
-            <input type="text" id="last-name" name="last-name" required autocomplete="family-name">
+    <!-- ── Hero ── -->
+    <main id="main">
+      <section class="hero" aria-label="Welcome">
+        <div class="container">
+          <div class="hero-grid">
+            <div>
+              <h1 class="reveal">
+                Quality Occupational Healthcare for the
+                San&nbsp;Gabriel&nbsp;Valley
+              </h1>
+              <p class="reveal reveal-delay-1">
+                Providing comprehensive occupational healthcare services with
+                superb medical care and open communication with employers since
+                1999.
+              </p>
+              <div class="hero-buttons reveal reveal-delay-2">
+                <a href="#contact" class="btn btn-red">Schedule a Visit</a>
+                <a href="#services" class="btn btn-outline">Our Services</a>
+              </div>
+            </div>
+            <div class="hero-image reveal reveal-delay-2">
+              <img
+                src="images/clinic_4r.jpg"
+                alt="Medical professional assisting a patient at Universal Industrial Care"
+              />
+            </div>
           </div>
         </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="email">Email <span aria-hidden="true">*</span></label>
-            <input type="email" id="email" name="email" required autocomplete="email">
+      </section>
+
+      <!-- ── Stats ── -->
+      <div class="stats-bar" aria-label="Key statistics">
+        <div class="container">
+          <div class="stats-grid">
+            <div class="stat-item reveal">
+              <div class="stat-number">85%</div>
+              <div class="stat-label">Patients Return to Work</div>
+            </div>
+            <div class="stat-item reveal reveal-delay-1">
+              <div class="stat-number">25+</div>
+              <div class="stat-label">Years of Experience</div>
+            </div>
+            <div class="stat-item reveal reveal-delay-2">
+              <div class="stat-number">5</div>
+              <div class="stat-label">Exam Rooms &amp; Trauma Center</div>
+            </div>
+            <div class="stat-item reveal reveal-delay-3">
+              <div class="stat-number">15+</div>
+              <div class="stat-label">Communities Served</div>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="phone">Phone</label>
-            <input type="tel" id="phone" name="phone" autocomplete="tel">
+        </div>
+      </div>
+
+      <!-- ── About ── -->
+      <section id="about" class="section-white" aria-labelledby="about-heading">
+        <div class="container">
+          <div class="about-grid">
+            <div class="about-image reveal">
+              <img
+                src="images/services_1.jpg"
+                alt="Healthcare professional taking a patient's blood pressure"
+              />
+            </div>
+            <div class="about-text">
+              <h2 id="about-heading" class="reveal">Who We Are</h2>
+              <p class="reveal reveal-delay-1">
+                Universal Industrial Care, located in the heart of the San
+                Gabriel Valley, is a leader in providing occupational healthcare
+                services for cost- and quality-conscious employers in our
+                geographic region.
+              </p>
+              <p class="reveal reveal-delay-2">
+                Our philosophy is simple: to provide our patients with superb
+                medical care while keeping an open line of communication with
+                each of our employer clients. We maintain a policy to keep
+                employers promptly informed about injured employees' medical
+                status and ensure our medical professionals are always available
+                to respond to inquiries.
+              </p>
+              <p class="reveal reveal-delay-2">
+                Our state-of-the-art facility, opened in August 1999, has five
+                exam rooms, a trauma room, X-ray department, and separate areas
+                for drug screenings.
+              </p>
+              <div class="about-features reveal reveal-delay-3">
+                <div class="about-feature">
+                  <div class="about-feature-icon" aria-hidden="true">
+                    &#9734;
+                  </div>
+                  <div class="about-feature-text">
+                    State-of-the-art facility
+                  </div>
+                </div>
+                <div class="about-feature">
+                  <div class="about-feature-icon" aria-hidden="true">
+                    &#9736;
+                  </div>
+                  <div class="about-feature-text">X-ray department</div>
+                </div>
+                <div class="about-feature">
+                  <div class="about-feature-icon" aria-hidden="true">
+                    &#9735;
+                  </div>
+                  <div class="about-feature-text">Multilingual staff</div>
+                </div>
+                <div class="about-feature">
+                  <div class="about-feature-icon" aria-hidden="true">
+                    &#9733;
+                  </div>
+                  <div class="about-feature-text">
+                    Open employer communication
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="form-group">
-          <label for="department">Department</label>
-          <select id="department" name="department">
-            <option value="">Select a department</option>
-            <option value="general">General Inquiries</option>
-            <option value="screenings">Employer Screenings</option>
-            <option value="referrals">Physician Referrals</option>
-            <option value="billing">Billing &amp; Collections</option>
-            <option value="marketing">Marketing</option>
-          </select>
+      </section>
+
+      <!-- ── Services ── -->
+      <section
+        id="services"
+        class="section-cream"
+        aria-labelledby="services-heading"
+      >
+        <div class="container">
+          <h2 id="services-heading" class="reveal">Our Services</h2>
+          <p class="section-subtitle reveal reveal-delay-1">
+            Comprehensive occupational health and workplace services centered
+            around employee wellness and injury recovery.
+          </p>
+
+          <div class="services-grid">
+            <div class="service-card reveal">
+              <div class="service-card-image">
+                <img
+                  src="images/services_2.jpg"
+                  alt="Physical therapy and patient examination"
+                />
+              </div>
+              <div class="service-card-body">
+                <h3>Work Transition Program</h3>
+                <p>
+                  Our flagship program focuses on modified duty and
+                  return-to-work initiatives with an 85% success rate. The
+                  structured 60-day program emphasizes gradual work
+                  reintegration.
+                </p>
+              </div>
+            </div>
+            <div class="service-card reveal reveal-delay-1">
+              <div class="service-card-image">
+                <img
+                  src="images/services_3.jpg"
+                  alt="Medical examination and consultation"
+                />
+              </div>
+              <div class="service-card-body">
+                <h3>Occupational Physicals</h3>
+                <p>
+                  Pre-employment, DOT, annual, and return-to-work examinations
+                  plus specialized testing including vision, audiometry,
+                  spirometry, and EKG.
+                </p>
+              </div>
+            </div>
+            <div class="service-card reveal reveal-delay-2">
+              <div class="service-card-image">
+                <img
+                  src="images/services_1.jpg"
+                  alt="Clinical health screening"
+                />
+              </div>
+              <div class="service-card-body">
+                <h3>Drug &amp; Alcohol Screening</h3>
+                <p>
+                  Certified MRO services with legal chain-of-custody procedures,
+                  NIDA and non-NIDA drug screens, and DOT-compliant breath
+                  alcohol testing.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top: var(--space-lg)">
+            <h3 class="reveal" style="margin-bottom: var(--space-md)">
+              More Services
+            </h3>
+
+            <div class="expandable reveal">
+              <button class="expandable-header" aria-expanded="false">
+                <span>On-Site Physical Therapy</span>
+                <span class="expand-icon" aria-hidden="true"></span>
+              </button>
+              <div class="expandable-content" role="region">
+                <div class="expandable-content-inner">
+                  A complete physical therapy facility operates at our location,
+                  providing patients with convenient access to rehabilitation
+                  services without the need for offsite referrals. Our
+                  therapists work closely with our physicians to create
+                  customized recovery plans.
+                </div>
+              </div>
+            </div>
+
+            <div class="expandable reveal reveal-delay-1">
+              <button class="expandable-header" aria-expanded="false">
+                <span>Specialist Referrals</span>
+                <span class="expand-icon" aria-hidden="true"></span>
+              </button>
+              <div class="expandable-content" role="region">
+                <div class="expandable-content-inner">
+                  We maintain relationships with medical professionals across
+                  multiple disciplines to ensure comprehensive care:
+                  <ul>
+                    <li>General Surgery</li>
+                    <li>Internal Medicine</li>
+                    <li>Neurology</li>
+                    <li>Obstetrics &amp; Gynecology</li>
+                    <li>Ophthalmology</li>
+                    <li>Orthopedics</li>
+                    <li>Physical &amp; Medical Rehabilitation</li>
+                    <li>Podiatry</li>
+                    <li>Reconstructive Surgery</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="expandable reveal reveal-delay-2">
+              <button class="expandable-header" aria-expanded="false">
+                <span>Occupational Examination Details</span>
+                <span class="expand-icon" aria-hidden="true"></span>
+              </button>
+              <div class="expandable-content" role="region">
+                <div class="expandable-content-inner">
+                  Our occupational physicals include a wide range of
+                  assessments:
+                  <ul>
+                    <li>Pre-employment examinations</li>
+                    <li>Basic physical examinations</li>
+                    <li>DOT examinations</li>
+                    <li>Annual examinations</li>
+                    <li>Return-to-work examinations</li>
+                    <li>Vision evaluations</li>
+                    <li>Audiometry (hearing tests)</li>
+                    <li>Spirometry (lung function tests)</li>
+                    <li>EKG (heart monitoring)</li>
+                    <li>Respiratory fit testing</li>
+                    <li>Asbestos-related X-rays</li>
+                    <li>Carpal tunnel assessments</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="message">Message <span aria-hidden="true">*</span></label>
-          <textarea id="message" name="message" required placeholder="How can we help you?"></textarea>
+      </section>
+
+      <!-- ── Providers ── -->
+      <section
+        id="providers"
+        class="section-dark"
+        aria-labelledby="providers-heading"
+      >
+        <div class="container">
+          <h2 id="providers-heading" class="reveal">Our Providers</h2>
+          <p class="section-subtitle reveal reveal-delay-1">
+            Experienced physicians dedicated to occupational health and injury
+            recovery.
+          </p>
+
+          <div class="providers-grid">
+            <div class="provider-card reveal">
+              <div class="provider-photo">
+                <img
+                  src="images/OTuazon.jpg"
+                  alt="Dr. Oscar Tuazon examining an X-ray"
+                />
+              </div>
+              <div class="provider-info">
+                <h3>Oscar Tuazon, M.D.</h3>
+                <div class="provider-title">Medical Director</div>
+                <p class="provider-bio">
+                  Known affectionately by his clients as "Dr. T," Dr. Tuazon
+                  ensures that all of his patients receive proper, quality care
+                  while maintaining excellent communication with their
+                  employers. He has devoted nearly 20 years to industrial
+                  medicine, making him a trusted leader in occupational
+                  healthcare.
+                </p>
+              </div>
+            </div>
+
+            <div class="provider-card reveal reveal-delay-1">
+              <div class="provider-photo">
+                <img src="images/Leon.jpg" alt="Dr. Billy Leon in clinic" />
+              </div>
+              <div class="provider-info">
+                <h3>Billy Leon, M.D.</h3>
+                <div class="provider-title">Orthopedic Surgeon</div>
+                <p class="provider-bio">
+                  Certified by the American Board of Orthopedic Surgery, Dr.
+                  Leon has been practicing general and orthopedic surgery since
+                  1977. He is a member of the American Academy of Orthopedic
+                  Surgeons and the California Orthopedic Association, with staff
+                  privileges at multiple area hospitals.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="team-photo reveal">
+            <img
+              src="images/Group-2004-03-17.jpg"
+              alt="The Universal Industrial Care team"
+            />
+          </div>
+          <p class="team-caption reveal reveal-delay-1">
+            Our dedicated, friendly staff is committed to providing excellent
+            service &mdash; with multilingual support in Spanish and Tagalog.
+          </p>
         </div>
-        <button type="submit" class="btn btn-red">Submit Message</button>
-      </form>
-    </div>
-  </div>
-</section>
-</main>
+      </section>
 
-<!-- ── Footer ── -->
-<footer class="site-footer" role="contentinfo">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="logo-text">Universal Industrial Care</div>
-        <p>Providing quality occupational healthcare services for cost- and quality-conscious employers in the San Gabriel Valley since 1999.</p>
+      <!-- ── Transportation ── -->
+      <section
+        id="transportation"
+        class="section-white"
+        aria-labelledby="transport-heading"
+      >
+        <div class="container">
+          <div class="transport-section">
+            <div>
+              <h2 id="transport-heading" class="reveal">Free Transportation</h2>
+              <p class="section-subtitle reveal reveal-delay-1">
+                Complimentary round-trip transportation for initial clinic
+                visits across 15 surrounding communities.
+              </p>
+              <p
+                class="reveal reveal-delay-2"
+                style="
+                  color: var(--color-gray-700);
+                  margin-bottom: var(--space-sm);
+                "
+              >
+                We understand that getting to your appointment shouldn't be a
+                barrier to receiving quality care. That's why we offer free
+                transportation services to and from our clinic for your first
+                visit.
+              </p>
+              <div class="community-tags reveal reveal-delay-3">
+                <span class="community-tag">Baldwin Park</span>
+                <span class="community-tag">Covina</span>
+                <span class="community-tag">West Covina</span>
+                <span class="community-tag">El Monte</span>
+                <span class="community-tag">Hacienda Heights</span>
+                <span class="community-tag">La Puente</span>
+                <span class="community-tag">Azusa</span>
+                <span class="community-tag">Glendora</span>
+                <span class="community-tag">Irwindale</span>
+                <span class="community-tag">Duarte</span>
+                <span class="community-tag">Monrovia</span>
+                <span class="community-tag">Arcadia</span>
+                <span class="community-tag">Pomona</span>
+                <span class="community-tag">Diamond Bar</span>
+                <span class="community-tag">Rowland Heights</span>
+              </div>
+            </div>
+            <div class="transport-image reveal reveal-delay-2">
+              <img
+                src="images/transport.jpg"
+                alt="UIC complimentary transportation van with the phone number 626-336-6652"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Location ── -->
+      <section
+        id="location"
+        class="section-cream"
+        aria-labelledby="location-heading"
+      >
+        <div class="container">
+          <h2 id="location-heading" class="reveal">Our Location</h2>
+          <p class="section-subtitle reveal reveal-delay-1">
+            Conveniently located in the heart of the San Gabriel Valley.
+          </p>
+
+          <div class="location-grid">
+            <div class="map-wrapper reveal">
+              <iframe
+                title="Universal Industrial Care location map"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3303.8!2d-117.9273!3d34.0295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2d4f7b1e1a7a1%3A0x1234567890abcdef!2s16025+E+Gale+Ave+%23B10%2C+City+of+Industry%2C+CA+91745!5e0!3m2!1sen!2sus!4v1700000000000"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                allowfullscreen
+              >
+              </iframe>
+            </div>
+            <div class="location-details">
+              <div class="location-clinic-photo reveal">
+                <img
+                  src="images/clinic.jpg"
+                  alt="Universal Industrial Care clinic exterior"
+                />
+              </div>
+
+              <div class="location-info-item reveal reveal-delay-1">
+                <div class="location-icon" aria-hidden="true">&#9872;</div>
+                <div>
+                  <strong>Address</strong>
+                  <span
+                    >16025 E. Gale Ave. Ste. B10<br />City of Industry, CA
+                    91745</span
+                  >
+                </div>
+              </div>
+
+              <div class="location-info-item reveal reveal-delay-2">
+                <div class="location-icon" aria-hidden="true">&#9742;</div>
+                <div>
+                  <strong>Phone</strong>
+                  <a href="tel:+16263366652">(626) 336-6652</a>
+                </div>
+              </div>
+
+              <div class="location-info-item reveal reveal-delay-3">
+                <div class="location-icon" aria-hidden="true">&#9993;</div>
+                <div>
+                  <strong>Fax</strong>
+                  <span>(626) 336-6552</span>
+                </div>
+              </div>
+
+              <a
+                href="https://www.google.com/maps/dir//16025+E+Gale+Ave+%23B10,+City+of+Industry,+CA+91745"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-blue"
+                style="margin-top: var(--space-sm)"
+              >
+                Get Directions &#8599;
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Contact ── -->
+      <section
+        id="contact"
+        class="section-dark"
+        aria-labelledby="contact-heading"
+      >
+        <div class="container">
+          <h2 id="contact-heading" class="reveal">Contact Us</h2>
+          <p class="section-subtitle reveal reveal-delay-1">
+            Get in touch with our team. We're here to help.
+          </p>
+
+          <div class="contact-grid">
+            <div class="contact-info-cards">
+              <div class="contact-info-card reveal">
+                <h4>General Inquiries</h4>
+                <p>
+                  <a href="mailto:info@uicmedcenter.com"
+                    >info@uicmedcenter.com</a
+                  >
+                </p>
+                <p><a href="tel:+16263366652">(626) 336-6652</a></p>
+              </div>
+              <div class="contact-info-card reveal reveal-delay-1">
+                <h4>Medical Director</h4>
+                <p>Oscar C. Tuazon, M.D.</p>
+                <p>
+                  <a href="mailto:otuazon@uicmedcenter.com"
+                    >otuazon@uicmedcenter.com</a
+                  >
+                </p>
+              </div>
+              <div class="contact-info-card reveal reveal-delay-2">
+                <h4>Employer Screenings</h4>
+                <p>Bryant Reyes</p>
+                <p>
+                  <a href="mailto:screenings@uicmedcenter.com"
+                    >screenings@uicmedcenter.com</a
+                  >
+                </p>
+              </div>
+              <div class="contact-info-card reveal reveal-delay-3">
+                <h4>Billing &amp; Collections</h4>
+                <p>
+                  <a href="mailto:billing@uicmedcenter.com"
+                    >billing@uicmedcenter.com</a
+                  >
+                </p>
+              </div>
+              <div class="contact-info-card reveal reveal-delay-4">
+                <h4>Physician Referrals</h4>
+                <p>Veronica Luna</p>
+                <p>
+                  <a href="mailto:vluna@uicmedcenter.com"
+                    >vluna@uicmedcenter.com</a
+                  >
+                </p>
+              </div>
+            </div>
+
+            <form
+              class="contact-form reveal reveal-delay-1"
+              action="#"
+              method="post"
+              novalidate
+            >
+              <h3>Send Us a Message</h3>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="first-name"
+                    >First Name <span aria-hidden="true">*</span></label
+                  >
+                  <input
+                    type="text"
+                    id="first-name"
+                    name="first-name"
+                    required
+                    autocomplete="given-name"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="last-name"
+                    >Last Name <span aria-hidden="true">*</span></label
+                  >
+                  <input
+                    type="text"
+                    id="last-name"
+                    name="last-name"
+                    required
+                    autocomplete="family-name"
+                  />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="email"
+                    >Email <span aria-hidden="true">*</span></label
+                  >
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    autocomplete="email"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="phone">Phone</label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    autocomplete="tel"
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="department">Department</label>
+                <select id="department" name="department">
+                  <option value="">Select a department</option>
+                  <option value="general">General Inquiries</option>
+                  <option value="screenings">Employer Screenings</option>
+                  <option value="referrals">Physician Referrals</option>
+                  <option value="billing">Billing &amp; Collections</option>
+                  <option value="marketing">Marketing</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="message"
+                  >Message <span aria-hidden="true">*</span></label
+                >
+                <textarea
+                  id="message"
+                  name="message"
+                  required
+                  placeholder="How can we help you?"
+                ></textarea>
+              </div>
+              <button type="submit" class="btn btn-red">Submit Message</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ── Footer ── -->
+    <footer class="site-footer" role="contentinfo">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="logo-text">Universal Industrial Care</div>
+            <p>
+              Providing quality occupational healthcare services for cost- and
+              quality-conscious employers in the San Gabriel Valley since 1999.
+            </p>
+          </div>
+          <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul role="list">
+              <li><a href="#about">About Us</a></li>
+              <li><a href="#services">Services</a></li>
+              <li><a href="#providers">Providers</a></li>
+              <li><a href="#transportation">Transportation</a></li>
+              <li><a href="#location">Location</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Contact</h4>
+            <ul role="list">
+              <li><a href="tel:+16263366652">(626) 336-6652</a></li>
+              <li>
+                <a href="mailto:info@uicmedcenter.com">info@uicmedcenter.com</a>
+              </li>
+              <li>16025 E. Gale Ave. Ste. B10</li>
+              <li>City of Industry, CA 91745</li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span
+            >&copy; 2004&ndash;2025 Universal Industrial Care. All rights
+            reserved.</span
+          >
+          <div class="footer-languages">
+            <span>English</span>
+            <span>Espa&ntilde;ol</span>
+            <span>Tagalog</span>
+          </div>
+        </div>
       </div>
-      <div class="footer-col">
-        <h4>Quick Links</h4>
-        <ul role="list">
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#providers">Providers</a></li>
-          <li><a href="#transportation">Transportation</a></li>
-          <li><a href="#location">Location</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Contact</h4>
-        <ul role="list">
-          <li><a href="tel:+16263366652">(626) 336-6652</a></li>
-          <li><a href="mailto:info@uicmedcenter.com">info@uicmedcenter.com</a></li>
-          <li>16025 E. Gale Ave. Ste. B10</li>
-          <li>City of Industry, CA 91745</li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>&copy; 2004&ndash;2025 Universal Industrial Care. All rights reserved.</span>
-      <div class="footer-languages">
-        <span>English</span>
-        <span>Espa&ntilde;ol</span>
-        <span>Tagalog</span>
-      </div>
-    </div>
-  </div>
-</footer>
+    </footer>
 
-<script>
-  // ── Scroll Reveal ──
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    <script>
+      // ── Scroll Reveal ──
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
+      );
 
-  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+      document
+        .querySelectorAll(".reveal")
+        .forEach((el) => revealObserver.observe(el));
 
-  // ── Header scroll effect ──
-  const header = document.querySelector('.site-header');
-  let lastScroll = 0;
-  window.addEventListener('scroll', () => {
-    header.classList.toggle('scrolled', window.scrollY > 20);
-  }, { passive: true });
+      // ── Header scroll effect ──
+      const header = document.querySelector(".site-header");
+      let lastScroll = 0;
+      window.addEventListener(
+        "scroll",
+        () => {
+          header.classList.toggle("scrolled", window.scrollY > 20);
+        },
+        { passive: true },
+      );
 
-  // ── Mobile nav toggle ──
-  const toggle = document.querySelector('.nav-toggle');
-  const navLinks = document.querySelector('.nav-links');
+      // ── Mobile nav toggle ──
+      const toggle = document.querySelector(".nav-toggle");
+      const navLinks = document.querySelector(".nav-links");
 
-  toggle.addEventListener('click', () => {
-    const isOpen = navLinks.classList.toggle('open');
-    toggle.classList.toggle('active');
-    toggle.setAttribute('aria-expanded', isOpen);
-  });
+      toggle.addEventListener("click", () => {
+        const isOpen = navLinks.classList.toggle("open");
+        toggle.classList.toggle("active");
+        toggle.setAttribute("aria-expanded", isOpen);
+      });
 
-  // Close mobile nav on link click
-  navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      navLinks.classList.remove('open');
-      toggle.classList.remove('active');
-      toggle.setAttribute('aria-expanded', 'false');
-    });
-  });
+      // Close mobile nav on link click
+      navLinks.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          navLinks.classList.remove("open");
+          toggle.classList.remove("active");
+          toggle.setAttribute("aria-expanded", "false");
+        });
+      });
 
-  // ── Expandable sections ──
-  document.querySelectorAll('.expandable-header').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const expandable = btn.closest('.expandable');
-      const content = expandable.querySelector('.expandable-content');
-      const isOpen = expandable.classList.toggle('open');
-      btn.setAttribute('aria-expanded', isOpen);
+      // ── Expandable sections ──
+      document.querySelectorAll(".expandable-header").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const expandable = btn.closest(".expandable");
+          const content = expandable.querySelector(".expandable-content");
+          const isOpen = expandable.classList.toggle("open");
+          btn.setAttribute("aria-expanded", isOpen);
 
-      if (isOpen) {
-        content.style.maxHeight = content.scrollHeight + 'px';
-      } else {
-        content.style.maxHeight = '0';
-      }
-    });
-  });
+          if (isOpen) {
+            content.style.maxHeight = content.scrollHeight + "px";
+          } else {
+            content.style.maxHeight = "0";
+          }
+        });
+      });
 
-  // ── Contact form validation ──
-  document.querySelector('.contact-form').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const required = form.querySelectorAll('[required]');
-    let valid = true;
+      // ── Contact form validation ──
+      document
+        .querySelector(".contact-form")
+        .addEventListener("submit", (e) => {
+          e.preventDefault();
+          const form = e.target;
+          const required = form.querySelectorAll("[required]");
+          let valid = true;
 
-    required.forEach(field => {
-      if (!field.value.trim()) {
-        field.style.borderColor = 'var(--color-red)';
-        valid = false;
-      } else {
-        field.style.borderColor = '';
-      }
-    });
+          required.forEach((field) => {
+            if (!field.value.trim()) {
+              field.style.borderColor = "var(--color-red)";
+              valid = false;
+            } else {
+              field.style.borderColor = "";
+            }
+          });
 
-    if (valid) {
-      const btn = form.querySelector('button[type="submit"]');
-      btn.textContent = 'Message Sent!';
-      btn.style.background = '#2a7d3f';
-      btn.disabled = true;
-      form.reset();
-      setTimeout(() => {
-        btn.textContent = 'Submit Message';
-        btn.style.background = '';
-        btn.disabled = false;
-      }, 3000);
-    }
-  });
-</script>
-
-</body>
+          if (valid) {
+            const btn = form.querySelector('button[type="submit"]');
+            btn.textContent = "Message Sent!";
+            btn.style.background = "#2a7d3f";
+            btn.disabled = true;
+            form.reset();
+            setTimeout(() => {
+              btn.textContent = "Submit Message";
+              btn.style.background = "";
+              btn.disabled = false;
+            }, 3000);
+          }
+        });
+    </script>
+  </body>
 </html>
